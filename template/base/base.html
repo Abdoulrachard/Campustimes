@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    {% include 'base/meta.html' %}
+    <title> {% block 'title' %} {% endblock %} - ITimes</title>
+    <style>
+        @import url("{% static 'vendor/P/Poppins-VariableFont_wght.ttf' %}");
+        @import url("{% static 'vendor/Poppins/Poppins-Italic-VariableFont_wght.ttf' %}");
+
+        *:not(.fa, .fas, .fad) {
+            font-family: 'Poppins'!important;
+        }
+
+        :root {
+            --app-primary-color: #2e4053
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        {% include 'partials/header.html' %}
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col col-4 align-self-center">
+                {% include 'partials/sidebar.html' %}
+            </aside>
+            <main class="col col-8 py-3 align-self-center border">
+                {% block 'main' %}
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+    <footer>
+        {% include 'partials/header.html' %}
+    </footer>
+</body>
+</html>
