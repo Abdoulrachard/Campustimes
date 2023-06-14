@@ -46,7 +46,7 @@ py -m pip install Django==4.2.2
 
 7. Demarrer le serveur d'application django:
 ```bash
-python manage.py runserver
+py manage.py runserver
 ```
 
 8. Dirigez vous dans le dossier `template` et travailler sur le fichier qui vous concerne
