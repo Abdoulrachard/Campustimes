@@ -38,6 +38,11 @@ cd PIL1_2223_27
 ```bash
 pip install -r requirements.py
 ```
+ou
+
+```bash
+py -m pip install Django==4.2.2
+```
 
 7. Demarrer le serveur d'application django:
 ```bash
