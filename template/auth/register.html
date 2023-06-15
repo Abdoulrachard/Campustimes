@@ -1,10 +1,78 @@
 {% extends 'auth/base.html' %}
+{% load static %}
 
 {% block 'title' %} Creer un compte {% endblock %}
 
 {% block 'main' %}
 
     <!-- Ecrivez le code ici -->
-    <h1>Register Page</h1>
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-5 p-0 clner">
+                <img src={% static '/img/logoifri.png' %} alt="" style="width: 150px ; height: 100px; margin-left: 10px; margin-top: 20px;">
+                <h3 class="">Welecome to ITimes</h3>
+                <p class="">Cette plateforme vous permet de consulter votre emplois <br> du temps hebdomadaire ..</p>
+            </div>
+            <div class="col-7  div-1 ">
+                <div class="mt-4 sign">
+                    <p>Don't have an account yet ? <a href="">Sign Up!</a></p>
+                </div>
+                <form action="" class="formulaire">
+                    <div class="mb-5">
+                        <h4 class="text-center">Sign in</h4>
+                        <p class="title-1 text-center">Enter your detail to create your accounte</p>
+                    </div>
+    
+                    <div class="mb-3">
+                        <input type="text" name="fullname" class="form-control" id="input1" aria-describedby="emailHelp"placeholder="Fullname" required>
+                            
+                    </div>
+                    <div class="mb-3 mt-4">
+                        <input type="email" name="email" class="form-control " id="input1" aria-describedby="emailHelp"
+                            placeholder="Email" required>
+                    </div>
+                    <div class="mb-3 mt-4">
+                        <input type="password" name="password" class="form-control " id="input1" aria-describedby="emailHelp"
+                            placeholder="Password" required>
+                    </div>
+                    <div class="mb-3 mt-4">
+                        <input type="email" name="passConfirm" class="form-control " id="input1" aria-describedby="emailHelp"
+                            placeholder="Confirm password" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">J'accepte les conditions d'utilisations</label>
+                      </div>
 
+                    <div class="content">
+                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-outline-info">Cancel</button>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block 'style' %}
+<style>
+    /* Ecrivez votre css ici */
+html, body{ height:100%;}
+.content{display:flex ; justify-content: space-between; margin-top: 5%;}
+.formulaire{width: 300px; margin-top: 20%; margin-left: 35%;}
+.formulaire input{ padding: 9.5px;}
+.pr{margin-top: 5px;}
+.pr a {text-decoration: none;}
+.btn{width: 100px !important; height: 40px !important;}
+.title-1{color: #a7afb7;}
+/* .formulaire h4{font-weight: 600;} */
+.sign{ margin-left: 70%;}
+.sign p{font-size: 15px; font-weight: 500;}
+.sign a {text-decoration: none}
+.div-1{background-color: #f0f0f0;}
+.clner{background-image:url({% static '/img/bg-4.jpg' %} ); background-repeat: no-repeat; background-position: center; background-size: cover;}
+.clner h3{font-size: 25px ;  color: white; margin-left: 20px; margin-top: 200px;}
+.clner p{font-size: 16px ;  color: #beb1b1; margin-left: 20px; margin-top: 0px;}
+</style>
 {% endblock %}
