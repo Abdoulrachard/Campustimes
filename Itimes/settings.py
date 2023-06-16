@@ -125,3 +125,7 @@ MEDIA_ROOT = BASE_DIR / 'assets'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = 'login'  # URL de la vue de connexion
+LOGIN_REDIRECT_URL = 'dashboard'  # URL vers laquelle l'utilisateur est redirigé après une connexion réussie
+LOGOUT_REDIRECT_URL = 'login'  # URL vers laquelle l'utilisateur est redirigé après une déconnexion réussie
+
