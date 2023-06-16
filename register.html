@@ -1,0 +1,110 @@
+{% extends 'auth/base.html' %}
+
+{% load static %}
+
+{% block 'title' %} Creer un compte {% endblock %}
+
+{% block 'main' %}
+
+    <!-- Ecrivez le code ici -->
+    <h1>Register Page</h1>
+    <div id="cont1">
+        <form>
+            <h1 class="h">Inscription</h1>
+            <label>Nom</label>
+            <input type="text" placeholder="Entrer votre nom complet" name="nom" required>
+            <label>Prénom</label>
+            <input type="text" placeholder="Entrer votre prenom" name="prenom" required>
+            <label>Matricul</label>
+            <input type="number" placeholder="Entrer votre matricul" name="matricul" required>
+            <label>Email</label>
+            <input type="email" placeholder="Entrer votre adresse mail" name="email" required>
+            <label>Filière</label>
+            <input type="text" placeholder="Entrer votre filière" name="filière" required>
+            <label>Niveau d'étude</label>
+            <input type="text" placeholder="Entrer votre niveau d'étude (exemple Licence 1)" name="niveau d'étude" required>
+            <label>Mot de passe</label>
+            <input type="password" placeholder="Entrer un mot de passe" name="password" required>
+            <label>Confirmation de mot de passe</label>
+            <input type="password" placeholder="Confirmer votre mot de passe" name="password" required>
+            <p class="bco">
+                En cliquant sur le boutton sign up vous acceptez nos<br><a class="lor" href="">Terms and Condition</a> et <a class="lor" href="">Policy Privacy</a> 
+            </p>
+            <input type="submit" id="submit" value="S'inscrire">
+        </form>
+    </div>
+    <p class="bco">
+        Déjà un compte ? <a class="lor" href="login.html">Connecte-toi</a>
+    </p>
+
+{% endblock %}
+{% block 'style' %}
+<style>
+    /* Ecrivez vos css ici directement  */
+    h1{
+        text-align: center;
+    }
+    .h{
+        color: white;
+    }
+    #cont1{
+        width: 400px;
+        margin: 0 auto;
+        margin-top: 10px;
+        display: flex;
+    }
+    #cont1 h1{
+        width: 38%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+    label{
+        color: #fff;
+    }
+    input[type=text], input[type=password], input[type=email], input[type=number]{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        background-color: #282acc;
+    }
+    input[type=submit]{
+        background-color: #5cb85c;
+        color: white;
+        border-color: #4cae4c;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        font-size: 1.3em;
+        border-radius: 6px;
+    }
+    input[type=submit]:hover{
+        opacity: 60%;
+    }
+    form{
+        width: 100%;
+        padding: 30px;
+        border: 1px solid #bce8f1;
+        background: #282acc;
+        border-radius: 4px;
+        box-shadow: 0 0 20px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.24);
+    }
+    .bco{
+        justify-content: center;
+        text-align: center;
+        font-family: sans-serif;
+        font-size: 1em;
+    }
+    .lor{
+        text-decoration: none;
+        color: #e06b0b;
+    }
+    .lor:hover{
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
