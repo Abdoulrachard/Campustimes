@@ -8,7 +8,7 @@
 
     <!-- Ecrivez le code ici -->
     <h1>Login Page</h1>
-    <div id="cont1">
+    <div id="cont">
         <form>
             <h1 class="h">connexion</h1>
             <!--Nom d'utilisateur-->
@@ -30,15 +30,19 @@
 {% block 'style' %}
 <style>
     /* Ecrivez vos css ici directement  */
+    h1{
+        text-align: center;
+    }
     .h{
         color: white;
     }
-    #cont1{
+    #cont{
         width: 400px;
         margin: 0 auto;
         margin-top: 10px;
+        display: flex
     }
-    #cont1 h1{
+    #cont h1{
         width: 38%;
         margin: 0 auto;
         padding-bottom: 10px;
