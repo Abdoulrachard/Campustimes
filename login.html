@@ -1,0 +1,102 @@
+{% extends 'auth/base.html' %}
+
+{% load static %}
+
+{% block 'title' %} Se Connecter {% endblock %}
+
+{% block 'main' %}
+
+    <!-- Ecrivez le code ici -->
+    <h1>Login Page</h1>
+    <div id="cont1">
+        <form>
+            <h1 class="h">connexion</h1>
+            <!--Nom d'utilisateur-->
+            <label>Matricul ou Email:</label>
+            <input type="text" placeholder="Entrer votre matricul ou votre adresse mail" name="matricule-email" required>
+            <!--Mot de passe-->
+            <label>Mot de passe:</label>
+            <input type="password" placeholder="Entrer le mot de passe" name="password" required>
+            <!--confirmation-->
+            <input type="submit" id="submit" value="se connecter">
+            <a class="lor" href="">Mot de passe oublié ?</a>
+        </form>
+    </div>
+    <p class="bco">
+        Pas de compte ? <a class="lor" href="register.html"><b>Inscrit-toi</b></a>
+    </p>
+
+{% endblock %}
+{% block 'style' %}
+<style>
+    /* Ecrivez vos css ici directement  */
+    .h{
+        color: white;
+    }
+    #cont1{
+        width: 400px;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+    #cont1 h1{
+        width: 38%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+    .cont2{
+        background-image: url(../img/fondins.jpg);
+    }
+    label{
+        color: #fff;
+    }
+    input[type=text], input[type=password]{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        background-color: #282acc;
+    }
+    input[type=submit], button[type=submit]{
+        background-color: #5cb85c;
+        color: white;
+        border-color: #4cae4c;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        font-size: 1.3em;
+        border-radius: 6px;
+    }
+    input[type=submit]:hover, button[type]:hover{
+        opacity: 60%;
+    }
+    #submit1{
+        background-color: #337ab7;
+        border-color: #2e6da4;
+    }
+    form{
+        width: 100%;
+        padding: 30px;
+        border: 1px solid #bce8f1;
+        background: #282acc;
+        border-radius: 4px;
+        box-shadow: 0 0 20px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.24);
+    }
+    .bco{
+        justify-content: center;
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
+        font-size: 1em;
+    }
+    .lor{
+        text-decoration: none;
+        color: #e06b0b;
+    }
+    .lor:hover{
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
