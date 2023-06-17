@@ -5,6 +5,46 @@
 {% block 'main' %}
 
     <!-- Ecrivez le code ici -->
-    <h1>Login Page</h1>
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4 background-image">
+            <img src="logo.jpg" alt="Logo" class="logo">
+            <div class="welcome-text">
+              <h1>Bienvenue à IFRI</h1>
+              <p>Nous bâtissons l'excellence</p>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-12">
+                <p class="text-end">Vous n'avez pas encore de compte? <a href="#">S'inscrire</a></p>
+                
+              </div>
+            </div>
+            <div class="connexion">
+              <h2 class="text-center">Connexion</h2>
+              <p class="text-center">Entrez votre nom d'utilisateur et mot de passe</p>
+              <form>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe">
+                </div>
+              
+                <div class="d-flex justify-content-brtween align-items-center mb-3">
+                  <div>
+                    <a href="#" class="me-6">Mot de passe oublié?</a>
+                  </div>
+                  <div>
+                    <button type="submit" class="btn btn-primary">Connecter</button>
+                  </div>
+    
+                </div>  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
 {% endblock %}
