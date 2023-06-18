@@ -7,195 +7,148 @@
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <div class="bg-white" id="sidebar-wrapper">
-        <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
-                class="mdi mdi-account-circle-outline me-2"></i>CampusTime</div>
+        <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i class="mdi mdi-school me-2"></i>CampusTimes</div>
         <div class="list-group list-group-flush my-3">
-            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"><i
-                    class="mdi mdi-speedometer me-2"></i>Dashboard</a>
-            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="mdi mdi-projector-screen-outline me-2"></i>Projects</a>
-            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="mdi mdi-chart-line me-2"></i>Analytics</a>
-            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="mdi mdi-file-document-outline me-2"></i>Reports</a>
-            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="mdi mdi-cart me-2"></i>Store Mng</a>
-            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="mdi mdi-gift-outline me-2"></i>Products</a>
-            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="mdi mdi-message-outline me-2"></i>Chat</a>
-            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="mdi mdi-map-marker-outline me-2"></i>Outlet</a>
-            <a href="{% url 'log_out' %}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
-                    class="mdi mdi-power me-2"></i>Logout</a>
+            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"><i class="mdi mdi-home me-2"></i>Accueil</a>
+            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="mdi mdi-calendar-clock me-2"></i>Emplois du temps</a>
+            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="mdi mdi-book-open-variant me-2"></i>Cours</a>
+            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="mdi mdi-account-group-outline me-2"></i>Étudiants</a>
+            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="mdi mdi-account-tie-outline me-2"></i>Professeurs</a>
+            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="mdi mdi-bank-outline me-2"></i>Administration</a>
+            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="mdi mdi-library-books me-2"></i>Bibliothèque</a>
+            <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="mdi mdi-chart-line me-2"></i>Statistiques</a>
+            <a href="{% url 'log_out' %}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i class="mdi mdi-power me-2"></i>Déconnexion</a>
         </div>
     </div>
+    
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
-            <div class="d-flex align-items-center">
-                <i class="mdi mdi-menu primary-text fs-4 me-3" id="menu-toggle"></i>
-                <h2 class="fs-2 m-0">Dashboard</h2>
-            </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="mdi mdi-account me-2"></i>John Doe
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="mdi mdi-menu primary-text fs-4 me-3" id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0">CampusTime</h2>
+                </div>
+        
+                <div class="navbar-nav ms-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-primary" type="button"><i class="mdi mdi-magnify"></i></button>
+                    </div>
+                    <a class="nav-link" href="#"><i class="mdi mdi-bell-outline"></i></a>
+                    <a class="nav-link" href="#"><i class="mdi mdi-brightness-6"></i></a>
+                    <a class="nav-link" href="#"><i class="mdi mdi-theme-light-dark"></i></a>
+                </div>
+            </nav>
+        </div>
+        
 
         <div class="container-fluid px-4">
-            <div class="row g-3 my-2">
+            <div class="row g-3 my-2 mx-3">
                 <div class="col-md-3">
                     <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                         <div>
-                            <h3 class="fs-2">720</h3>
-                            <p class="fs-5">Products</p>
+                            <h3 class="fs-2">Cours</h3>
+                            <p class="fs-5">Programmes</p>
                         </div>
-                        <i class="mdi mdi-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        <i class="mdi mdi-book-open-page-variant fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                     </div>
                 </div>
-
+        
                 <div class="col-md-3">
                     <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                         <div>
-                            <h3 class="fs-2">4920</h3>
-                            <p class="fs-5">Sales</p>
+                            <h3 class="fs-2">Étudiants</h3>
+                            <p class="fs-5">Inscrits</p>
                         </div>
-                        <i
-                            class="mdi mdi-currency-usd fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        <i class="mdi mdi-account-group fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                     </div>
                 </div>
-
+        
                 <div class="col-md-3">
                     <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                         <div>
-                            <h3 class="fs-2">3899</h3>
-                            <p class="fs-5">Delivery</p>
+                            <h3 class="fs-2">Enseignants</h3>
+                            <p class="fs-5">Actifs</p>
                         </div>
-                        <i class="mdi mdi-truck fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        <i class="mdi mdi-teach fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                     </div>
                 </div>
-
+        
                 <div class="col-md-3">
                     <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                         <div>
-                            <h3 class="fs-2">%25</h3>
-                            <p class="fs-5">Increase</p>
+                            <h3 class="fs-2">% Réussite</h3>
+                            <p class="fs-5">Moyenne</p>
                         </div>
-                        <i class="mdi mdi-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        <i class="mdi mdi-trophy fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                     </div>
                 </div>
             </div>
-
-            <div class="row my-5">
-                <h3 class="fs-4 mb-3">Recent Orders</h3>
+        </div>
+        
+        
+            <div class="row my-5  mx-2">
+                <h3 class="fs-4 mb-3">Emploi du temps</h3>
                 <div class="col">
-                    <table class="table bg-white rounded shadow-sm  table-hover">
+                    <table class="table bg-white rounded shadow-sm table-hover">
                         <thead>
                             <tr>
-                                <th scope="col" width="50">#</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Customer</th>
-                                <th scope="col">Price</th>
+                                <th scope="col" width="100">Horaire</th>
+                                <th scope="col">Lundi</th>
+                                <th scope="col">Mardi</th>
+                                <th scope="col">Mercredi</th>
+                                <th scope="col">Jeudi</th>
+                                <th scope="col">Vendredi</th>
+                                <th scope="col">Samedi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Television</td>
-                                <td>Jonny</td>
-                                <td>$1200</td>
+                                <th scope="row">7:00 - 10:00</th>
+                                <td>Zohou Jerome - Algorithmique<br>Salle Iran 1</td>
+                                <td>Doumate - Langage C<br>Salle Iran 2</td>
+                                <td>John Aoga - Python<br>Salle Padtice</td>
+                                <td>Cica Olympio - Architecture des réseaux<br>Salle A1000</td>
+                                <td>Jean Koudi - Numération<br>Salle Etisalat</td>
+                                <td>Hounzame Vladimir - Logique des prédicats<br>Salle B500</td>
                             </tr>
                             <tr>
-                                <th scope="row">2</th>
-                                <td>Laptop</td>
-                                <td>Kenny</td>
-                                <td>$750</td>
+                                <th scope="row">10:00 - 13:00</th>
+                                <td>Eugene Ezin - Analyse Mathématique<br>Salle Iran 1</td>
+                                <td>Probus Kiki - Logique assertionnelle<br>Salle Iran 2</td>
+                                <td>Olatumbosun - Probabilité<br>Salle Padtice</td>
+                                <td>Zohou Jerome - Statistique<br>Salle A1000</td>
+                                <td>Doumate - Développement web<br>Salle Etisalat</td>
+                                <td>John Aoga - Théorie des graphes<br>Salle B500</td>
                             </tr>
                             <tr>
-                                <th scope="row">3</th>
-                                <td>Cell Phone</td>
-                                <td>Jenny</td>
-                                <td>$600</td>
+                                <th scope="row">13:00 - 16:00</th>
+                                <td>Cica Olympio - Algorithmique<br>Salle Iran 1</td>
+                                <td>Jean Koudi - Langage C<br>Salle Iran 2</td>
+                                <td>Hounzame Vladimir - Python<br>Salle Padtice</td>
+                                <td>Eugene Ezin - Architecture des réseaux<br>Salle A1000</td>
+                                <td>Probus Kiki - Numération<br>Salle Etisalat</td>
+                                <td>Olatumbosun - Logique des prédicats<br>Salle B500</td>
                             </tr>
                             <tr>
-                                <th scope="row">4</th>
-                                <td>Fridge</td>
-                                <td>Killy</td>
-                                <td>$300</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Books</td>
-                                <td>Filly</td>
-                                <td>$120</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Gold</td>
-                                <td>Bumbo</td>
-                                <td>$1800</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">7</th>
-                                <td>Pen</td>
-                                <td>Bilbo</td>
-                                <td>$75</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">8</th>
-                                <td>Notebook</td>
-                                <td>Frodo</td>
-                                <td>$36</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">9</th>
-                                <td>Dress</td>
-                                <td>Kimo</td>
-                                <td>$255</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">10</th>
-                                <td>Paint</td>
-                                <td>Zico</td>
-                                <td>$434</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">11</th>
-                                <td>Carpet</td>
-                                <td>Jeco</td>
-                                <td>$1236</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">12</th>
-                                <td>Food</td>
-                                <td>Haso</td>
-                                <td>$422</td>
+                                <th scope="row">16:00 - 19:00</th>
+                                <td>Zohou Jerome - Analyse Mathématique<br>Salle Iran 1</td>
+                                <td>Doumate - Logique assertionnelle<br>Salle Iran 2</td>
+                                <td>John Aoga - Probabilité<br>Salle Padtice</td>
+                                <td>Cica Olympio - Statistique<br>Salle A1000</td>
+                                <td>Jean Koudi - Développement web<br>Salle Etisalat</td>
+                                <td>Hounzame Vladimir - Théorie des graphes<br>Salle B500</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            
+            
+            
         </div>
     </div>
 </div>
