@@ -24,25 +24,28 @@
         </div>
         <div class="col-7  div-1 ">
             <div class="mt-4 sign">
-                <p>Vous n'aviez pas de compte ? <a href="">Connectez vous !</a></p>
+                <p>Vous n'aviez pas de compte ? <a href="{% url 'register' %}">S'inscrit !</a></p>
             </div>
-            <form action="" class="formulaire"method="post">
+            <form action="{% url 'login' %}" class="formulaire"method="POST">
                 {% csrf_token %}
                 <div class="mb-5">
                     <h4 class="text-center">Connexion</h4>
                     <p class="title-1 text-center">Entrer vos identifiants pour vous connectez</p>
                 </div>
-
+                {% if error %}
+                    <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                       {{ message }} 
+                    </div>
+                {% endif %}
                 <div class="mb-3">
-                    <input type="email" class="form-control" id="input1" aria-describedby="emailHelp"
-                        placeholder="Email">
+                    <input type="email" name="email" class="form-control" id="input1" aria-describedby="emailHelp"placeholder="Email">
                 </div>
                 <div class="mb-3 mt-4">
-                    <input type="password" class="form-control " id="input1" aria-describedby="emailHelp"
-                        placeholder="Mot de Passe">
+                    <input type="password" name="password" class="form-control " id="input1" aria-describedby="emailHelp"placeholder="Mot de Passe">
                 </div>
                 <div class="content">
-                    <p class="pr"><a href="">Mot de Passe oublier ?</a></p>
+                    <p class="pr"><a href="{% url 'forgot-password' %}">Mot de Passe oublier ?</a></p>
                     <button type="submit"class="btn btn-primary text-center" name="env">Connecter</button>
                 </div>
                

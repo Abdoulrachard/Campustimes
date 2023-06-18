@@ -26,29 +26,43 @@
             </div>
             <div class="col-7  div-1 ">
                 <div class="mt-4 sign">
-                    <p>Vous n'aviez pas un compte ? <a href="">Connectez vous !</a></p>
+                    <p>Vous aviez déja un compte ? <a href="{% url 'login' %}">Connectez vous !</a></p>
                 </div>
-                <form action="" class="formulaire" method="post">
+                <form action="{% url 'register' %}" class="formulaire" method="POST">
+                    {% csrf_token %}
                     <div class="mb-5">
                         <h4 class="text-center">Inscriptions</h4>
                         <p class="title-1 text-center">Entrer vos détails pour créer votre compte </p>
                     </div>
-    
+                    {% if error %}
+                    <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                       {{ message }} 
+                    </div>
+                    
+                    <script>
+                      var alertList = document.querySelectorAll('.alert');
+                      alertList.forEach(function (alert) {
+                        new bootstrap.Alert(alert)
+                      })
+                    </script>
+                    {% endif %}
+                    
                     <div class="mb-3">
-                        <input type="text" name="fullname" class="form-control" id="input1" aria-describedby="emailHelp"placeholder="Nom et Prénom" required>
+                        <input type="text" name="fullname" class="form-control" id="input1" aria-describedby="emailHelp"placeholder="Nom et Prénom" required >
                             
                     </div>
                     <div class="mb-3 mt-4">
-                        <input type="email" name="email" class="form-control " id="input1" aria-describedby="emailHelp"
-                            placeholder="Email" required>
+                        <input type="text" name="email" class="form-control " id="input1" aria-describedby="emailHelp"
+                            placeholder="Email" >
                     </div>
                     <div class="mb-3 mt-4">
                         <input type="password" name="password" class="form-control " id="input1" aria-describedby="emailHelp"
-                            placeholder="Mot de Passe" required>
+                            placeholder="Mot de Passe" >
                     </div>
                     <div class="mb-3 mt-4">
-                        <input type="email" name="passConfirm" class="form-control " id="input1" aria-describedby="emailHelp"
-                            placeholder="Confirmer Mot de Passe" required>
+                        <input type="password" name="newpassword" class="form-control " id="input1" aria-describedby="emailHelp"
+                            placeholder="Confirmer Mot de Passe" >
                     </div>
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
