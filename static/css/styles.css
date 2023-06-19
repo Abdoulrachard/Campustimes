@@ -1,0 +1,70 @@
+.im2{
+    height: 100px;
+    margin-left: 50px;
+}
+.pop{
+    background-image: url(../static/img/im1.jpg);
+    background-size: cover;
+    height: 800px;
+    width: 790px;
+    
+}
+.pot{
+    color: orange;
+    margin-left: 250px;
+    
+}
+.col{
+    color: white;
+    margin-left: 250px;
+    margin-top: -30px;
+}
+.toto{
+    color: white;
+    margin-left: 50px;
+}
+.zozo{
+    margin-left: 1025px;
+    margin-top: -600px;
+}
+.passe{
+    margin-left: 950px;
+}
+.petit{
+    margin-left: 950px;
+    height: 40px;
+    width: 400px;
+    background-color: rgb(243, 238, 238);
+    border-radius: 10px;
+}
+.submit{
+    margin-left: 1000px;
+    height: 40px;
+    width: 100px;
+    background-color: blue;
+    color: white;
+    border-radius:  10px;
+}
+.ok{
+    
+    height: 40px;
+    width: 100px;
+    margin-top: -200px;
+    color: blue;
+    border-radius:  10px;
+    margin-left: 105px;
+    
+}
+.propre{
+    margin-left: 800px;
+    text-align:justify ;
+}
+.bon,a{
+    margin-left: 680px;
+    margin-top: -10px;
+    text-decoration: none;
+    color: blue;
+}
+.alo{
+    margin-left: 900px;
+}
