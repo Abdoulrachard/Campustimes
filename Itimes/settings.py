@@ -17,12 +17,13 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 # SMTP Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  
-EMAIL_PORT = 587  
-EMAIL_HOST_USER = 'abdoulrachard@gmail.com'  
-EMAIL_HOST_PASSWORD = 'Rachard-009'  
-EMAIL_USE_TLS = True  
-EMAIL_USE_SSL = False  
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = 'abdoulrachard@gmail.com'
+EMAIL_HOST_PASSWORD = 'Racho009'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+  
 
 # Autres paramètres d'e-mail facultatifs
 # DEFAULT_FROM_EMAIL = 'info@example.com' 
