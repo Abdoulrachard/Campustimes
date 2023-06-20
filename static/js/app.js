@@ -40,3 +40,38 @@
   });
 })();
 
+function updateFiliereOptions() {
+  var semestreSelect = document.getElementById("semestre");
+  var filiereGroup = document.getElementById("filiereGroup");
+  var filiereSelect = document.getElementById("filiere");
+
+  // Réinitialiser les options de la filière
+  filiereSelect.innerHTML = "<option value='all'>Toutes les filières</option>";
+
+  // Récupérer la valeur du semestre sélectionné
+  var selectedSemestre = semestreSelect.value;
+
+  // Afficher ou masquer les éléments en fonction du semestre sélectionné
+  if (selectedSemestre === "semestre1" || selectedSemestre === "semestre2") {
+    filiereGroup.style.display = "none";
+  } else {
+    filiereGroup.style.display = "block";
+
+    // Ajouter les options de filière en fonction du semestre sélectionné
+    var filieres = [
+      "Génie Logiciel",
+      "Sécurité Informatique",
+      "Internet Multimédia",
+      "Intelligence Artificielle",
+      "Systèmes Embarqués et IoT"
+    ];
+
+    filieres.forEach(function (filiere) {
+      var option = document.createElement("option");
+      option.value = filiere.toLowerCase().replace(/\s/g, "-");
+      option.textContent = filiere;
+      filiereSelect.appendChild(option);
+    });
+  }
+}
+

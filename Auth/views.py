@@ -1,3 +1,6 @@
+from base64 import urlsafe_b64decode
+import pdb
+from django.http import JsonResponse
 from django.shortcuts import render , redirect
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
@@ -8,6 +11,8 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
+
+from Auth.mail import send_html_email
 
 def login(request):
     error = False
@@ -81,59 +86,78 @@ def register(request):
     return render(request, 'auth/register.html', context)
 
 def forgot_password(request):
-    # error = False
-    # message = ""
-    # if request.method == 'POST':
-    #     email = request.POST.get('email')
-    #     user = User.objects.filter(email=email).first()
+    error = False
+    message = ""
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        #return JsonResponse(request.POST)
+        user = User.objects.filter(email=email).first()
 
-    #     if user:
-    #         token = default_token_generator.make_token(user)
-    #         uid = urlsafe_base64_encode(force_bytes(user.pk)).decode('utf-8')
+        if user:
+            token = default_token_generator.make_token(user)
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
 
-    #         reset_link = request.build_absolute_uri(f'reset-password/{uid}/{token}')
+            reset_link = request.build_absolute_uri(f'reset-password/{uid}/{token}')
+            send_html_email('Réinitialisation de mot de passe','mail/forgot-password.html', {
+                'user': user,
+                'reset_link': reset_link,
+            }, [email])
 
-    #         subject = 'Réinitialisation de mot de passe'
-    #         message = render_to_string('auth/reset_password_email.html', {
-    #             'user': user,
-    #             'reset_link': reset_link,
-    #         })
-    #         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])
-
-    #         return redirect('password_reset_done')
-    #     else:
-    #         error = True
-    #         message = "Aucun utilisateur avec cet email"
-    #         # return redirect('password_reset_failed')
-    # context = {
-    #     'error': error,
-    #     'message': message
-    # }
+            return redirect('password_reset_done')
+        else:
+            error = True
+            message = "Aucun utilisateur avec cet email"
+            # return redirect('password_reset_failed')
+    context = {
+        'error': error,
+        'message': message
+    }
     
     return render(request, 'auth/forgot-password.html', context)
 
-def new_password(request):
-    # if request.method == 'POST':
-    #     password = request.POST.get('password')
-    #     user_id = request.POST.get('user_id')
-
-    #     user = User.objects.filter(pk=user_id).first()
-    #     if user:
-    #         user.set_password(password)
-    #         user.save()
-
-    #         return redirect('login')
-    context = {}
+def new_password(request, uidb64, token):
     
-    return render(request, 'auth/new-password.html', context)
+    try:
+        uid = urlsafe_b64decode(uidb64).decode()
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
 
-# def password_reset_done(request):
-#     return render(request, 'auth/password_reset_done.html')
+    if user is not None and default_token_generator.check_token(user, token):
+        # Le jeton de réinitialisation du mot de passe est valide
+        if request.method == 'POST':
+            password = request.POST.get('password')
+            confirm_password = request.POST.get('confirm_password')
+
+            if password == confirm_password:
+                user.set_password(password)
+                user.save()
+                return redirect('password_reset_complete')
+            else:
+                # Les mots de passe ne correspondent pas
+                error = True
+                message = "Les mots de passe ne correspondent pas."
+        else:
+            error = False
+            message = ""
+    else:
+        # Le jeton de réinitialisation du mot de passe est invalide
+        error = True
+        message = "Le lien de réinitialisation du mot de passe est invalide."
+
+    context = {
+        'error': error,
+        'message': message
+    }
+    return render(request, 'auth/new-password.html', context)
 
 
 def log_out(request):
     logout(request)
     return redirect('login')
+
+def password_reset_done(request):
+    return render(request, 'auth/password_reset_done.html')
 
 
 
