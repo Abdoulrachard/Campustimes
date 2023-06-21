@@ -1,15 +1,13 @@
 {% extends 'auth/base.html' %}
+{%load static%} 
 
 {% block 'title' %} Se Connecter {% endblock %}
 
 {% block 'main' %}
 
     <!-- Ecrivez le code ici -->
-  
-            <link rel="stylesheet" href="/home/abdel/Bureau/IA/PIL1_2223_27/static/css/styles.css">
-    
-        <body class="corp">
-            <img src="/home/abdel/Bureau/IA/PIL1_2223_27/static/img/Sans_titre-removebg-preview(1).png" alt="kkk">
+  <body class="corp">
+            <img src="{%static 'img/Sans_titre-removebg-preview(1).png' %} alt="kkk">
             <div class="tito">
             <strong><h2>Bienvenue sur Campus Times!</h2></strong>
             <p>Consultez vos emplois du temps facilement sur votre <br>application web Campus Times. <br> Avec Campus Times, <br><strong>Gérez,Profitez,Réussissez... <strong></strong></p>
