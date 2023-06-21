@@ -1,5 +1,5 @@
 .corp{
-    background-image: url("/home/abdel/Bureau/IA/PIL1_2223_27/static/img/img.jpeg");
+    background-image: url("{%static 'img/img.jpeg'%}");
     background-repeat: no-repeat;
     background-size: cover;
 }
