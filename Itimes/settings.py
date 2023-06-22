@@ -75,13 +75,22 @@ WSGI_APPLICATION = 'Itimes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}"""
+DATABASES = {
+    "default": {
+        'ENGINE':'django.db.backends.mysql',
+        'NAME': 'nom_base_de_donées',
+        'USER': 'utilisateur',
+        'PASSWORD': 'utilisateur_mot_passe',
+        'HOST': 'hote_ou_se_trouve_la_base_de_donné',
+        'PORT': 'port_pour_au_serveur_my_sql',
+    }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -125,3 +134,11 @@ MEDIA_ROOT = BASE_DIR / 'assets'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#SEND MAIL
+EMAIL_BACKEND= 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST= 'smtp.gmail.com'
+EMAIL_PORT= 587
+EMAIL_USE_TLS= True
+EMAIL_HOST_USER= 'votremail@gmail.com'
+EMAIL_HOST_PASSWORD= 'votrepasswordmail'
