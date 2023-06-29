@@ -1,0 +1,216 @@
+<div class="container">
+    <div class="my-3 d-flex justify-content-end">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSubject">
+            <i class="mdi mdi-plus"></i>
+            Ajouter
+        </button>
+        <div class="modal fade" id="addSubject" tabindex="-1" aria-labelledby="addSubjectLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addSubjectLabel">Ajouter un enseignant/collaborateur</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'proffesseur' %}" class="ajaxForm">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="POST">
+                            <div class="mb-3 text-start">
+                                <label for="last_name_id" class="form-label">Nom</label>
+                                <input type="text" name="last_name" id="last_name_id" class="form-control"
+                                    placeholder="Ex: DOE">
+                            </div>
+                            <div class="my-3 text-start">
+                                <label for="first_name_id" class="form-label">Prénoms</label>
+                                <input type="text" name="first_name" id="first_name_id" class="form-control"
+                                    placeholder="Ex: John">
+                            </div>
+                            <div class="my-3 text-start">
+                                <label for="email_id" class="form-label">Email</label>
+                                <input type="email" name="email" id="email_id" class="form-control"
+                                    placeholder="Ex: exemple@exemple.com">
+                            </div>
+                            <div class="my-3 d-flex">
+                                <div class="form-check form-switch">
+                                    <label for="is_staff_id" class="form-check-label">Enseignant</label>
+                                    <input type="checkbox" name="is_staff" id="is_staff_id" class="form-check-input">
+                                </div>
+                                <div class="form-check form-switch ms-4">
+                                    <label for="is_superuser_id" class="form-check-label">Collaborateur</label>
+                                    <input type="checkbox" name="is_superuser" id="is_superuser_id"
+                                        class="form-check-input">
+                                </div>
+                            </div>
+                            <div class="text-center my-3">
+                                <button type="submit" class="btn btn-dark w-50 mx-auto submit">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        {% if state.error %}
+        <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ state.error }}
+        </div>
+        {% endif %}
+        {% if state.success %}
+        <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ state.success|safe }}
+        </div>
+        {% endif %}
+    </div>
+    <table class="table table-striped table-hover text-center">
+        <thead style="background-color: #3F4254 ; color: white;">
+            <tr>
+                <th class="text-uppercase">#</th>
+                <th class="text-uppercase">Nom Complet</th>
+                <th class="text-uppercase">Email</th>
+                <th class="text-uppercase">Statut</th>
+                <th class="text-uppercase">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pf in teachers %}
+            <tr>
+                <td> {{ pf.id }} </td>
+                <td> {{ pf.first_name|add:" "|add:pf.last_name }} </td>
+                <td>
+                    {{ pf.email }}
+                </td>
+                <td>
+                    {% if pf.is_staff %}
+                    <div class="badge bg-primary">
+                        Enseignant
+                    </div>
+                    {% endif %}
+                    {% if pf.is_superuser %}
+                    <div class="badge bg-danger">
+                        Collaborateur
+                    </div>
+                    {% endif %}
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary btn-icon edit-btn" style="margin-right: 10px !important;"
+                        data-bs-toggle="modal" data-bs-target="#editModal{{pf.id}}"><i
+                            class="mdi mdi-pencil"></i></button>
+                    <button class="btn btn-sm btn-danger btn-icon delete-btn" data-bs-toggle="modal"
+                        data-bs-target="#destroyModal{{pf.id}}"><i class="mdi mdi-delete-outline"></i></button>
+                    <div class="modal fade" id="destroyModal{{pf.id}}" tabindex="-1"
+                        aria-labelledby="destroyModal{{pf.id}}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="destroyModal{{pf.id}}">Suppression
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'proffesseur' %}" method="post" class="modal-body ajaxForm">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="DELETE">
+                                        <input type="hidden" name="user_id" value="{{ pf.id }}">
+                                        <h4>Voulez-vous vraiment supprimer {{ pf.label }} </h4>
+                                        <div class="text-center my-3">
+                                            <button type="submit" class="btn btn-danger w-25 mx-auto">
+                                                Oui, OK
+                                            </button>
+                                            <button type="button" class="btn btn-primary w-25 mx-auto"
+                                                data-bs-dismiss="modal" aria-label="Close">
+                                                Annuler
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="editModal{{pf.id}}" tabindex="-1" aria-labelledby="editModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editModalLabel">Editer {{ pf.label }} </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'proffesseur' %}" method="post" class="ajaxForm">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="PATCH">
+                                        <input type="hidden" name="user_id" value="{{ pf.id }}">
+                                        <div class="mb-3 text-start">
+                                            <label for="last_name_id" class="form-label">Nom</label>
+                                            <input type="text" name="last_name" id="last_name_id" class="form-control"
+                                                placeholder="Ex: DOE" value="{{ pf.last_name }}">
+                                        </div>
+                                        <div class="my-3 text-start">
+                                            <label for="first_name_id" class="form-label">Prénoms</label>
+                                            <input type="text" name="first_name" id="first_name_id" class="form-control"
+                                                placeholder="Ex: John" value="{{ pf.first_name }}">
+                                        </div>
+                                        <div class="my-3 text-start">
+                                            <label for="email_id" class="form-label">Email</label>
+                                            <input type="email" name="email" id="email_id" class="form-control"
+                                                placeholder="Ex: exemple@exemple.com" value="{{ pf.email }}">
+                                        </div>
+                                        <div class="my-3 d-flex">
+                                            <div class="form-check form-switch">
+                                                <label for="is_staff_id" class="form-check-label">Enseignant</label>
+                                                <input type="checkbox" name="is_staff" id="is_staff_id"
+                                                    class="form-check-input" {% if pf.is_staff %} checked {% endif %}>
+                                            </div>
+                                            <div class="form-check form-switch ms-4">
+                                                <label for="is_superuser_id"
+                                                    class="form-check-label">Collaborateur</label>
+                                                <input type="checkbox" name="is_superuser" id="is_superuser_id"
+                                                    class="form-check-input"
+                                                    {% if pf.is_superuser %} checked {% endif %}>
+                                            </div>
+                                        </div>
+                                        <div class="text-center my-3">
+                                            <button type="submit" class="btn btn-dark w-50 mx-auto submit">Mise à
+                                                jour</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".ajaxForm").each(function (k, elt) {
+
+            $(this).on('submit', function (e) {
+                e.preventDefault();
+
+                $(elt).parents('.modal').find('.btn-close').click();
+
+                const formData = $(this).serialize();
+
+                $.ajax({
+                    method: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: formData,
+                    success: function (data) {
+                        $("#mainPage").html(data);
+                    },
+                    error: function (err) {
+                        $("#mainPage").html(err.responseText);
+                    },
+                })
+            })
+        })
+    })
+</script>

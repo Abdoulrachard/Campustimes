@@ -5,49 +5,64 @@
 {% block 'main' %}
 <!-- Ecrivez le code ici -->
 <div class="d-flex" id="wrapper">
+
     <!-- Sidebar -->
     <div class="bg-white" id="sidebar-wrapper">
-        <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
+        <div class="sidebar-heading text-center py-4 primary-custome fs-4 fw-bold text-uppercase border-bottom"><i
                 class="mdi mdi-school me-2"></i>CampusTimes</div>
         <div class="list-group list-group-flush my-3" id="sidebar">
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action bg-transparent second-text active c-link"><i
-                    class="mdi mdi-home me-2"></i>Accueil</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
-                data-c-link="{% url 'emplois' %}" ><i class="mdi mdi-calendar-clock me-2"></i>Emplois du temps</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
-                data-c-link="{% url 'cours' %}"><i class="mdi mdi-book-open-variant me-2"></i>Cours</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"><i
-                    class="mdi mdi-account-group-outline me-2"></i>Étudiants</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"><i
-                    class="mdi mdi-account-tie-outline me-2"></i>Professeurs</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"><i
-                    class="mdi mdi-bank-outline me-2"></i>Administration</a>
-           
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"><i
-                    class="mdi mdi-chart-line me-2"></i>Statistiques</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"><i
-                        class="mdi mdi-help-circle me-2"></i>Aides</a>
-            <a href="{% url 'log_out' %}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text active c-link"><i
+                    class="mdi mdi-home me-2"></i>Tableau de Bord</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'emplois' %}"><i class="mdi mdi-calendar-clock me-2"></i>Emplois du temps</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'matiere' %}"><i class="mdi mdi-book-open-variant me-2"></i>Matières</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'level' %}"><i class="mdi mdi-account-group-outline me-2"></i>Niveaux</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'proffesseur' %}"><i class="mdi mdi-account-tie-outline me-2"></i>Professeurs</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'salle' %}"><i class="mdi mdi-bank-outline me-2"></i>Salles</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"data-c-link="{% url 'aides' %}"
+                ><i
+                    class="mdi mdi-help-circle me-2"></i>Aides</a>
+            <a href="{% url 'log_out' %}"
+                class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                     class="mdi mdi-power me-2"></i>Déconnexion</a>
+
+        </div>
+        <div class="nano ">
+            <p class="text-center  " style="color: white; padding: 8px; background-color: rgb(47, 49, 47); margin: 8px; border-radius: 5px; margin-top: 80%;"
+            >&copy;2023 Campustimes v1.0</p>
         </div>
     </div>
 
-    <!-- /javascript:void(0)sidebar-wrapper -->
 
-    <!-- Page Content -->
     <div id="page-content-wrapper">
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="mdi mdi-menu primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">CampusTime</h2>
+                    
                 </div>
 
                 <div class="navbar-nav ms-auto">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-primary" type="button"><i class="mdi mdi-magnify"></i></button>
-                    </div>
+                    <div class="row">
+                        <div class="col">
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Rechercher..." aria-label="Rechercher" style="width: 900px !important;">
+                            <button class="btn btn-primary" type="button">Rechercher</button>
+                          </div>
+                        </div>
+                      </div>
+
                     <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-bell-outline"></i></a>
                     <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-brightness-6"></i></a>
                     <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-theme-light-dark"></i></a>
@@ -58,8 +73,8 @@
 
         <div class="container-fluid px-4">
             <div class="row g-3 my-2 mx-3">
-                <div class="col-md-3">
-                    <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                <div class="col-md-3 ">
+                    <div class="p-3 c-1 shadow-sm d-flex justify-content-around align-items-center rounded">
                         <div>
                             <h3 class="fs-2">Cours</h3>
                             <p class="fs-5">Programmes</p>
@@ -70,7 +85,7 @@
                 </div>
 
                 <div class="col-md-3">
-                    <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div class="p-3 c-2 shadow-sm d-flex justify-content-around align-items-center rounded">
                         <div>
                             <h3 class="fs-2">Étudiants</h3>
                             <p class="fs-5">Inscrits</p>
@@ -80,17 +95,17 @@
                 </div>
 
                 <div class="col-md-3">
-                    <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div class="p-3 c-3 shadow-sm d-flex justify-content-around align-items-center rounded">
                         <div>
                             <h3 class="fs-2">Enseignants</h3>
                             <p class="fs-5">Actifs</p>
                         </div>
-                        <i class="mdi mdi-teach fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        <i class="mdi mdi-account-tie fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div class="p-3 c-4 shadow-sm d-flex justify-content-around align-items-center rounded">
                         <div>
                             <h3 class="fs-2">% Réussite</h3>
                             <p class="fs-5">Moyenne</p>
@@ -181,5 +196,5 @@
     </div>
 </div>
 </div>
-<!-- /javascript:void(0)page-content-wrapper -->
+
 {% endblock %}

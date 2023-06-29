@@ -1,0 +1,304 @@
+
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block 'title' %} Acceuil {% endblock %}
+
+{% block 'main' %}
+<!-- Ecrivez le code ici -->
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading text-center py-4 primary-custome fs-4 fw-bold text-uppercase border-bottom"><i
+                class="mdi mdi-school me-2"></i>CampusTimes</div>
+        <div class="list-group list-group-flush my-3" id="sidebar">
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text active c-link"><i
+                    class="mdi mdi-home me-2"></i>Tableau de Bord</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'emplois_etudiants' %}"><i class="mdi mdi-calendar-clock me-2"></i>Emplois du
+                temps</a>
+
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'notification' %}"><i class="mdi mdi-bell-outline me-2"></i>Notifications</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'aides' %}"><iclass="mdi mdi-help-circle me-2" ></i>Aides</a>
+            <a href="{% url 'log_out' %}"
+                class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                    class="mdi mdi-power me-2"></i>Déconnexion</a>
+
+        </div>
+        <div class="nano ">
+            <p class="text-center  "
+                style="color: white; padding: 8px; background-color: rgb(47, 49, 47); margin: 8px; border-radius: 5px; margin-top: 80%;">
+                &copy;2023 Campustimes v1.0</p>
+        </div>
+    </div>
+
+
+    <div id="page-content-wrapper">
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="mdi mdi-menu primary-text fs-4 me-3" id="menu-toggle"></i>
+
+                </div>
+
+                <div class="navbar-nav ms-auto">
+                    <div class="row">
+                        <div class="col">
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Rechercher..." aria-label="Rechercher" style="width: 900px !important;">
+                            <button class="btn btn-primary" type="button">Rechercher</button>
+                          </div>
+                        </div>
+                      </div>
+                      
+
+                    <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-bell-outline"></i></a>
+                    <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-brightness-6"></i></a>
+                    <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-theme-light-dark"></i></a>
+                </div>
+            </nav>
+        </div>
+
+
+        <div class="container-fluid px-4">
+            <div class="row g-3 my-2 mx-3">
+                <div class="col-md-3 ">
+                    <div class="p-3 c-1 shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div>
+                            <h3 class="fs-2">Nombre total</h3>
+                            <p class="fs-5">qsdfgh</p>
+                        </div>
+                        <i
+                            class="mdi mdi-book-open-page-variant fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="p-3 c-2 shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div>
+                            <h3 class="fs-2">Nombre Total </h3>
+                            <p class="fs-5">azert</p>
+                        </div>
+                        <i class="mdi mdi-account-group fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="p-3 c-3 shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div>
+                            <h3 class="fs-2">Nombre Total </h3>
+                            <p class="fs-5">Actifs</p>
+                        </div>
+                        <i class="mdi mdi-account-tie fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="p-3 c-4 shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div>
+                            <h3 class="fs-2">Nombre Total </h3>
+                            <p class="fs-5">wxcvbn</p>
+                        </div>
+                        <i class="mdi mdi-trophy fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="loading" style="display: none;">
+            <div class="card-body text-center py-4 position-relative" style="min-height: 300px;">
+                <div class="position-absolute bottom-50 start-50">
+                    <div class="spinner spinner-border text-primary">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner spinner-border text-danger">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner spinner-border text-success">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner spinner-border text-warning">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5 mx-2" id="mainPage">
+            <div class="container">
+                <div class="hstack mb-4 rounded mt-2 banner" style="background-color: #FFFFFF;">
+                <div class="hstack">
+                    <img src={% static '/img/logoifri.png' %} class="logo" alt=""
+                        style="width: 100px ; height: 100px; margin-left: 10px; margin-top: 20px;">
+                    <div class="mx-2">
+                        <h6 class="banner_ifri">INSTITUT DE FORMATION ET DE RECHERCHE EN INFORMATIQUE</h6>
+                        <p class="text-center"
+                            style="font-style: italic; font-size: 15px ; color: #726363; font-weight: 500 ;">Nous
+                            Bâtissons l'Excellence</p>
+                    </div>
+                    <div class="ms-auto">
+                        <div class="vstack banner_ministere">
+                            <b>UNIVERSITE D'ABOMEY CALAVI</b>
+                            <div class="banner_drapeau">
+                                <div class="hstack" style="height: 8px;">
+                                    <div class="col" style="height: 4px;background-color: #5A9F69;"></div>
+                                    <div class="col" style="height: 4px;background-color: #DED843;"></div>
+                                    <div class="col" style="height: 4px;background-color: #BC6469;"></div>
+                                </div>
+                            </div>
+                            <span class="banner_ministere_bottom">
+                                MINISTERE DE L'ENSEIGNEMENT SUPERIEUR ET DE LA RECHERCHES SCIENTIFIQUE
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ms-4">
+                        <a href="">
+                            <img src={% static '/img/logouac.png' %} class="logo"
+                                style="width: 100px ; height: 100px; margin-left: 10px; margin-top: 20px;">
+
+                        </a>
+                    </div>
+                </div>
+
+               
+            </div>
+            <div class="content" style="margin-top: 100px ;">
+                <img src={% static '/img/header.png' %} class="rounded"  >
+            </div>
+
+
+            <div class="container" style="margin-top: 50px !important">
+                <div class="row">
+                <div class="col">
+                <div class="card">
+                    <img src={% static '/img/1.1.png' %} class="card-img-top" alt="Image d'illustration" style="width: 100px ; height: 100px; margin-left: 35%; margin-top: 20px;">
+                  <div class="card-body">
+                    <h5 class="card-title text-center"style="font-weight:700 !important">Innovation</h5>
+                    <p class="card-text text-center" style="font-size: 13px !important">Les étudiants de l'IFRI sont formés avec le goût pour l'innovation et l'entrepreneuriat afin de développer des solutions pour résoudre des problèmes spécifiques de leur milieu de vie, et du monde en général.</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src={% static '/img/1.3.png' %} class="card-img-top" alt="Image d'illustration" style="width: 100px ; height: 100px; margin-left:  35%; margin-top: 20px;">
+                  <div class="card-body">
+                    <h5 class="card-title text-center"style="font-weight:700 !important">Recherche</h5>
+                    <p class="card-text text-center"style="font-size: 13px !important">L'institut dispose d'un laboratoire de recherche en science informatique et application qui permet aux doctorants et aux enseignants de mener des travaux de recherches et <br> d'innovations.</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src={% static '/img/1.2.png' %} class="card-img-top" alt="Image d'illustration" style="width: 100px ; height: 100px; margin-left:  35%; margin-top: 20px;">
+                  <div class="card-body">
+                    <h5 class="card-title text-center"style="font-weight:700 !important">Certification</h5>
+                    <p class="card-text text-center"style="font-size: 13px !important">Le programme de formation dans l'institut contient des cours de certifications dans divers domaines. Ainsi nos édutiants en L3 suivent les cours de certifications CCNA, CND, CEH, Mikrotik, Oracle</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+              </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}
+ {% block 'styles' %}
+    <style>
+        .hstack {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;}
+   .mx-2{
+    margin-right: 0.5rem!important;
+    margin-left: 0.5rem!important;
+   }
+   .banner_ifri {
+    font-size: 15px;
+    color: #4B4747;
+    line-height: 22px;
+    font-weight: 550;
+   }
+   
+
+.text-center {
+    text-align: center!important;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.logo {
+    height: 80px;
+}
+
+img, svg {
+    vertical-align: middle;
+}
+img {max-width: 100%; height: auto;}
+.ms-auto {
+    margin-left: auto!important;
+}
+.vstack {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-self: stretch;
+}
+.banner_ministere {
+    width: 250px;
+}
+b, strong {
+    font-weight: bolder;
+}
+.banner_drapeau {
+    height: 8px;
+    width: 250px;
+    margin: 5px 0px;
+}
+.banner_ministere_bottom {
+    color: black;
+    text-align: justify;
+    font-size: 13px;
+    line-height: 18px;
+}
+.ms-4 {
+    margin-left: 1.5rem!important;
+}
+.rounded {
+    border-radius: 0.25rem!important;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem!important;
+}
+.mt-2 {
+    margin-top: 0.5rem!important;
+}
+.hstack {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;
+}
+.banner {
+    display: none;
+}
+.banner {
+    padding: 20px;
+    box-shadow: 0px 22px 99px rgba(37, 130, 184, 0.15);
+}
+</style>
+{% endblock %}

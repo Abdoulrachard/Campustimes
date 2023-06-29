@@ -18,7 +18,7 @@ def login(request):
     error = False
     message = ""
     if request.method == 'POST':
-        # Récupérer les données du formulaire
+       
         email = request.POST.get('email')
         password = request.POST.get('password')
         user  = User.objects.filter(email=email).first()
@@ -46,7 +46,7 @@ def register(request):
     error = False
     message = ""
     if request.method == 'POST':
-        # Récupérer les données du formulaire
+     
         last_name, first_name = request.POST.get('fullname').split(' ')
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -90,7 +90,7 @@ def forgot_password(request):
     message = ""
     if request.method == 'POST':
         email = request.POST.get('email')
-        #return JsonResponse(request.POST)
+       
         user = User.objects.filter(email=email).first()
 
         if user:
@@ -107,7 +107,7 @@ def forgot_password(request):
         else:
             error = True
             message = "Aucun utilisateur avec cet email"
-            # return redirect('password_reset_failed')
+            
     context = {
         'error': error,
         'message': message
@@ -124,7 +124,6 @@ def new_password(request, uidb64, token):
         user = None
 
     if user is not None and default_token_generator.check_token(user, token):
-        # Le jeton de réinitialisation du mot de passe est valide
         if request.method == 'POST':
             password = request.POST.get('password')
             confirm_password = request.POST.get('confirm_password')
@@ -134,14 +133,14 @@ def new_password(request, uidb64, token):
                 user.save()
                 return redirect('password_reset_complete')
             else:
-                # Les mots de passe ne correspondent pas
+               
                 error = True
                 message = "Les mots de passe ne correspondent pas."
         else:
             error = False
             message = ""
     else:
-        # Le jeton de réinitialisation du mot de passe est invalide
+       
         error = True
         message = "Le lien de réinitialisation du mot de passe est invalide."
 

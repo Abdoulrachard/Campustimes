@@ -1,5 +1,329 @@
-<div class="card card-dark">
-    <div class="card-body">
-        <h1>Hello, It's courses page</h1>
-    </div>
+<div class="container">
+    <form action="" method="POST">
+        <div class="d-flex  justify-content-between">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button type="reset"class="btn btn-success">Annuler</button>
+        </div>
+    <table class="table table-striped text-center">
+        <thead>
+            <tr class="bg-light-gray">
+                <th class="text-uppercase">Lundi</th>
+                <th class="text-uppercase">Mardi</th>
+                <th class="text-uppercase">Mercredi</th>
+                <th class="text-uppercase">Jeudi</th>
+                <th class="text-uppercase">Vendredi</th>
+                <th class="text-uppercase">Samedi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="card shadow" id="cardsContainer" >
+                        <div class="card-header d-flex justify-content-end" data-bs-toggle="collapse"
+                            data-bs-target="#content1">
+                            <i class="mdi mdi-plus-minus mdi-24px"></i>
+                        </div>
+                        <div class="card-body" id="content1">
+                           
+                                <label for="jours">Matiere</label>
+                                <select class="form-control" name="jours" id="jours" required>
+                                    <option value="Algorithmique">Algorithmique</option>
+                                    <option value="Langage C">Langage C</option>
+                                    <option value="Statistiques">Statistiques</option>
+                                    <option value="Analyse">Analyse</option>
+                                    <option value="Analyse">Probabilité</option>
+                                    <option value="Théorie des graphes">Théorie des graphes</option>
+                                </select>
+                                <label for="jours">Proffesseurs</label>
+                                <select class="form-control" name="jours" id="jours" required>
+                                    <option value="Zohou P.">Zohou P.</option>
+                                    <option value="John Aoga">John Aoga</option>
+                                    <option value="Doumaté">Doumaté</option>
+                                    <option value="Jean Koudi">Jean Koudi</option>
+                                    <option value="Eugène Ezin">Eugène Ezin</option>
+                                    <option value="John Doe">John Doe</option>
+                                </select>
+                                <label for="salle">Salle</label>
+                                <select class="form-control" name="jours" id="jours" required>
+                                    <option value="Iran 2">Iran 2</option>
+                                    <option value="Iran 1">Iran 1</option>
+                                    <option value="A-1000">A-1000</option>
+                                    <option value="B-500">B-500</option>
+                                    <option value="Etisala">Etisalat</option>
+                                    <option value="E-400">E-400</option>
+                                </select>
+                                <label for="jours">Heure ecouler</label>
+                        <select class="form-control" name="jours" id="jours" required>
+                            <option value="4/25">4/25</option>
+                            <option value="8/25">8/25</option>
+                            <option value="12/25">12/25</option>
+                            <option value="16/25">16/25</option>
+                            <option value="20/25">20/25</option>
+                            <option value="25/25">25/25</option>
+                        </select>
+                            
+                            <a class="btn btn-primary  mt-3 w-100 " onclick="dupliquerCarte(this)">Ajouter</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="card shadow" id="cardsContainer" >
+                        <div class="card-header d-flex justify-content-end" data-bs-toggle="collapse"
+                            data-bs-target="#content1">
+                            <i class="mdi mdi-plus-minus mdi-24px"></i>
+                        </div>
+                        <div class="card-body" id="content1">
+                           
+                                <label for="jours">Matiere</label>
+                                <select class="form-control" name="jours" id="jours" required>
+                                    <option value="Algorithmique">Algorithmique</option>
+                                    <option value="Langage C">Langage C</option>
+                                    <option value="Statistiques">Statistiques</option>
+                                    <option value="Analyse">Analyse</option>
+                                    <option value="Analyse">Probabilité</option>
+                                    <option value="Théorie des graphes">Théorie des graphes</option>
+                                </select>
+                                <label for="jours">Proffesseurs</label>
+                                <select class="form-control" name="jours" id="jours" required>
+                                    <option value="Zohou P.">Zohou P.</option>
+                                    <option value="John Aoga">John Aoga</option>
+                                    <option value="Doumaté">Doumaté</option>
+                                    <option value="Jean Koudi">Jean Koudi</option>
+                                    <option value="Eugène Ezin">Eugène Ezin</option>
+                                    <option value="John Doe">John Doe</option>
+                                </select>
+                                <label for="jours">Salle</label>
+                                <select class="form-control" name="jours" id="jours" required>
+                                    <option value="Iran 2">Iran 2</option>
+                                    <option value="Iran 1">Iran 1</option>
+                                    <option value="A-1000">A-1000</option>
+                                    <option value="B-500">B-500</option>
+                                    <option value="Etisala">Etisalat</option>
+                                    <option value="E-400">E-400</option>
+                                </select>
+                                <label for="jours">Heure ecouler</label>
+                        <select class="form-control" name="jours" id="jours" required>
+                            <option value="4/25">4/25</option>
+                            <option value="8/25">8/25</option>
+                            <option value="12/25">12/25</option>
+                            <option value="16/25">16/25</option>
+                            <option value="20/25">20/25</option>
+                            <option value="25/25">25/25</option>
+                        </select>
+                            
+                            <a class="btn btn-primary  mt-3 w-100 " onclick="dupliquerCarte(this)">Ajouter</a>
+                        </div>
+                    </div>
+                    
+                </td>
+                <td>
+                    <div class="card shadow" id="cardsContainer" >
+                        <div class="card-header d-flex justify-content-end" data-bs-toggle="collapse"
+                            data-bs-target="#content2">
+                            <i class="mdi mdi-plus-minus mdi-24px"></i>
+                        </div>
+                        <div class="card-body" id="content1">
+                           
+                            <label for="jours">Matiere</label>
+                            <select class="form-control" name="jours" id="jours" required>
+                                <option value="Algorithmique">Algorithmique</option>
+                                <option value="Langage C">Langage C</option>
+                                <option value="Statistiques">Statistiques</option>
+                                <option value="Analyse">Analyse</option>
+                                <option value="Analyse">Probabilité</option>
+                                <option value="Théorie des graphes">Théorie des graphes</option>
+                            </select>
+                            <label for="jours">Proffesseurs</label>
+                            <select class="form-control" name="jours" id="jours" required>
+                                <option value="Zohou P.">Zohou P.</option>
+                                <option value="John Aoga">John Aoga</option>
+                                <option value="Doumaté">Doumaté</option>
+                                <option value="Jean Koudi">Jean Koudi</option>
+                                <option value="Eugène Ezin">Eugène Ezin</option>
+                                <option value="John Doe">John Doe</option>
+                            </select>
+                            <label for="salle">Salle</label>
+                            <select class="form-control" name="jours" id="jours" required>
+                                <option value="Iran 2">Iran 2</option>
+                                <option value="Iran 1">Iran 1</option>
+                                <option value="A-1000">A-1000</option>
+                                <option value="B-500">B-500</option>
+                                <option value="Etisala">Etisalat</option>
+                                <option value="E-400">E-400</option>
+                            </select>
+                            <label for="jours">Heure ecouler</label>
+                    <select class="form-control" name="jours" id="jours" required>
+                        <option value="4/25">4/25</option>
+                        <option value="8/25">8/25</option>
+                        <option value="12/25">12/25</option>
+                        <option value="16/25">16/25</option>
+                        <option value="20/25">20/25</option>
+                        <option value="25/25">25/25</option>
+                    </select>
+                            
+                            <a class="btn btn-primary  mt-3 w-100 " onclick="dupliquerCarte(this)">Ajouter</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="card shadow" id="cardsContainer" >
+                        <div class="card-header d-flex justify-content-end" data-bs-toggle="collapse"
+                            data-bs-target="#content2">
+                            <i class="mdi mdi-plus-minus mdi-24px"></i>
+                        </div>
+                        <div class="card-body" id="content1">
+                           
+                            <label for="jours">Matiere</label>
+                            <select class="form-control" name="jours" id="jours" required>
+                                <option value="Algorithmique">Algorithmique</option>
+                                <option value="Langage C">Langage C</option>
+                                <option value="Statistiques">Statistiques</option>
+                                <option value="Analyse">Analyse</option>
+                                <option value="Analyse">Probabilité</option>
+                                <option value="Théorie des graphes">Théorie des graphes</option>
+                            </select>
+                            <label for="jours">Proffesseurs</label>
+                            <select class="form-control" name="jours" id="jours" required>
+                                <option value="Zohou P.">Zohou P.</option>
+                                <option value="John Aoga">John Aoga</option>
+                                <option value="Doumaté">Doumaté</option>
+                                <option value="Jean Koudi">Jean Koudi</option>
+                                <option value="Eugène Ezin">Eugène Ezin</option>
+                                <option value="John Doe">John Doe</option>
+                            </select>
+                            <label for="salle">Salle</label>
+                            <select class="form-control" name="jours" id="jours" required>
+                                <option value="Iran 2">Iran 2</option>
+                                <option value="Iran 1">Iran 1</option>
+                                <option value="A-1000">A-1000</option>
+                                <option value="B-500">B-500</option>
+                                <option value="Etisala">Etisalat</option>
+                                <option value="E-400">E-400</option>
+                            </select>
+                            <label for="jours">Heure ecouler</label>
+                    <select class="form-control" name="jours" id="jours" required>
+                        <option value="4/25">4/25</option>
+                        <option value="8/25">8/25</option>
+                        <option value="12/25">12/25</option>
+                        <option value="16/25">16/25</option>
+                        <option value="20/25">20/25</option>
+                        <option value="25/25">25/25</option>
+                    </select>
+                            
+                            <a class="btn btn-primary  mt-3 w-100 " onclick="dupliquerCarte(this)">Ajouter</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="card shadow" id="cardsContainer" >
+                        <div class="card-header d-flex justify-content-end" data-bs-toggle="collapse"
+                            data-bs-target="#content2">
+                            <i class="mdi mdi-plus-minus mdi-24px"></i>
+                        </div>
+                        <div class="card-body" id="content1">
+                           
+                            <label for="jours">Matiere</label>
+                            <select class="form-control" name="jours" id="jours" required>
+                                <option value="Algorithmique">Algorithmique</option>
+                                <option value="Langage C">Langage C</option>
+                                <option value="Statistiques">Statistiques</option>
+                                <option value="Analyse">Analyse</option>
+                                <option value="Analyse">Probabilité</option>
+                                <option value="Théorie des graphes">Théorie des graphes</option>
+                            </select>
+                            <label for="jours">Proffesseurs</label>
+                            <select class="form-control" name="jours" id="jours" required>
+                                <option value="Zohou P.">Zohou P.</option>
+                                <option value="John Aoga">John Aoga</option>
+                                <option value="Doumaté">Doumaté</option>
+                                <option value="Jean Koudi">Jean Koudi</option>
+                                <option value="Eugène Ezin">Eugène Ezin</option>
+                                <option value="John Doe">John Doe</option>
+                            </select>
+                            <label for="salle">Salle</label>
+                            <select class="form-control" name="jours" id="jours" required>
+                                <option value="Iran 2">Iran 2</option>
+                                <option value="Iran 1">Iran 1</option>
+                                <option value="A-1000">A-1000</option>
+                                <option value="B-500">B-500</option>
+                                <option value="Etisala">Etisalat</option>
+                                <option value="E-400">E-400</option>
+                            </select>
+                            <label for="jours">Heure ecouler</label>
+                    <select class="form-control" name="jours" id="jours" required>
+                        <option value="4/25">4/25</option>
+                        <option value="8/25">8/25</option>
+                        <option value="12/25">12/25</option>
+                        <option value="16/25">16/25</option>
+                        <option value="20/25">20/25</option>
+                        <option value="25/25">25/25</option>
+                    </select>
+                            
+                            <a class="btn btn-primary  mt-3 w-100 " onclick="dupliquerCarte(this)">Ajouter</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="card shadow" id="cardsContainer" >
+                        <div class="card-header d-flex justify-content-end" data-bs-toggle="collapse"
+                            data-bs-target="#content3">
+                            <i class="mdi mdi-plus-minus mdi-24px"></i>
+                        </div>
+                        <div class="card-body" id="content1">
+                           
+                            <label for="jours">Matiere</label>
+                            <select class="form-control" name="jours" id="jours" required>
+                                <option value="Algorithmique">Algorithmique</option>
+                                <option value="Langage C">Langage C</option>
+                                <option value="Statistiques">Statistiques</option>
+                                <option value="Analyse">Analyse</option>
+                                <option value="Analyse">Probabilité</option>
+                                <option value="Théorie des graphes">Théorie des graphes</option>
+                            </select>
+                            <label for="jours">Proffesseurs</label>
+                            <select class="form-control" name="jours" id="jours" required>
+                                <option value="Zohou P.">Zohou P.</option>
+                                <option value="John Aoga">John Aoga</option>
+                                <option value="Doumaté">Doumaté</option>
+                                <option value="Jean Koudi">Jean Koudi</option>
+                                <option value="Eugène Ezin">Eugène Ezin</option>
+                                <option value="John Doe">John Doe</option>
+                            </select>
+                            <label for="salle">Salle</label>
+                            <select class="form-control" name="jours" id="jours" required>
+                                <option value="Iran 2">Iran 2</option>
+                                <option value="Iran 1">Iran 1</option>
+                                <option value="A-1000">A-1000</option>
+                                <option value="B-500">B-500</option>
+                                <option value="Etisala">Etisalat</option>
+                                <option value="E-400">E-400</option>
+                            </select>
+                            <label for="jours">Heure ecouler</label>
+                    <select class="form-control" name="jours" id="jours" required>
+                        <option value="4/25">4/25</option>
+                        <option value="8/25">8/25</option>
+                        <option value="12/25">12/25</option>
+                        <option value="16/25">16/25</option>
+                        <option value="20/25">20/25</option>
+                        <option value="25/25">25/25</option>
+                    </select>
+                            
+                            <a class="btn btn-primary  mt-3 w-100 " onclick="dupliquerCarte(this)">Ajouter</a>
+                        </div>
+                    </div>
+                </td>
+         </tr>
+        </tbody>
+    </table>
+</form>
 </div>
+<script>
+function dupliquerCarte(a) {
+    var card = a.parentNode;
+    var clone = card.cloneNode(true);
+    
+    let cardParent = card.parentNode;
+
+    cardParent.appendChild(clone);
+  }
+</script>
