@@ -11,36 +11,44 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
-
 from Auth.mail import send_html_email
+
+
 
 def login(request):
     error = False
     message = ""
+
     if request.method == 'POST':
-       
         email = request.POST.get('email')
         password = request.POST.get('password')
-        user  = User.objects.filter(email=email).first()
+        user = User.objects.filter(email=email).first()
+        
         if user:
             user_auth = authenticate(username=user.username, password=password)
+            
             if user_auth:
-                auth_login(request , user_auth )
-                return redirect('default')
+                auth_login(request, user_auth)
+                
+                if user.is_superuser or user.is_staff:
+                    return redirect('default') 
+                else:
+                    return redirect('etudiant')  
+                
             else:
-               error = True
-               message = "Mot de passe incorrect !"
+                error = True
+                message = "Mot de passe incorrect !"
         else:
             error = True
             message = "Cet utilisateur n'existe pas !"
         
-            
     context = {
         'error': error,
         'message': message
     }
     
     return render(request, 'auth/login.html', context)
+
 
 def register(request):
     error = False

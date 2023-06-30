@@ -12,4 +12,6 @@ urlpatterns = [
     path('Notification', views.notification, name='notification'),
     path('Emplois_Etudiants', views.emplois_etudiants, name='emplois_etudiants'),
     path('Aides', views.aides, name='aides'),
+   
 ]
+

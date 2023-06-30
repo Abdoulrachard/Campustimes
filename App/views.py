@@ -5,6 +5,11 @@ from .models import Subject, Classroom, Timestable, Level
 from django.contrib.auth.models import User
 import uuid
 from django.db.models import Q
+from datetime import datetime, timedelta
+from App.models import Timestable, Level
+
+
+
 
 @login_required()
 def default(request):
@@ -197,7 +202,7 @@ def level(request):
     }
     
     return render(request, 'app/level.html', context)
-
+@login_required()
 def proffesseur(request):
     
     error, success = None, None
@@ -343,3 +348,84 @@ def aides(request):
     context = {}
     
     return render(request, 'app/aide.html', context)
+
+
+
+def page_not_found(request, exception):
+    return render(request, 'error/404.html', status=404)
+
+def permission_denied(request, exception):
+    return render(request, 'error/403.html', status=403)
+
+
+
+# def get_timetable_data(niveau_id: int | None = None, current_week: bool = False, week=None):
+    if current_week:
+        start_date = datetime.now().date() - timedelta(days=datetime.now().date().weekday())
+        end_date = start_date + timedelta(days=6)
+        timetable_entries = Timestable.objects.filter(
+            start_time__date__range=(start_date, end_date), level_id=niveau_id)
+    else:
+        timetable_entries = Timestable.objects.filter(
+            level_id=niveau_id, week_num=week)
+
+    all_week = []
+
+    for entry in timetable_entries:
+        week_number = entry.start_time.isocalendar()[1]
+
+        if week_number not in all_week:
+            all_week.append(week_number)
+
+    grouped_timetable = {}
+
+    for entry in timetable_entries:
+        week_number = entry.start_time.isocalendar()[1]
+        day_name = entry.start_time.strftime('%A')
+
+        if week_number not in grouped_timetable:
+            grouped_timetable[week_number] = {}
+
+        if day_name not in grouped_timetable[week_number]:
+            grouped_timetable[week_number][day_name] = {
+                1: [],  # 07-10h
+                2: [],  # 10h-13h
+                3: [],  # 13h-16h
+                4: [],  # 16h-19h
+            }
+
+        hour_range = get_hour_range(entry.start_time.time())
+
+        grouped_timetable[week_number][day_name][hour_range].append({
+            'id': entry.id,
+            'subject': entry.subject.serialize(),
+            'user': entry.user.serialize(),
+            'classroom': entry.classroom.serialize(),
+            'start_time': str(entry.start_time.strftime("%d/%m/%Y, %H:%M")),
+            'end_time': str(entry.end_time.strftime("%d/%m/%Y, %H:%M")),
+        })
+
+    timetable_data = []
+
+    days_of_week = ['Monday', 'Tuesday', 'Wednesday',
+                    'Thursday', 'Friday', 'Saturday', 'Sunday']
+    current_day_index = datetime.now().weekday()
+
+    for i in range(7):
+        day_index = (current_day_index + i) % 7
+        day_name = days_of_week[day_index]
+        day_data = {
+            'day_name': day_name.capitalize(),
+            'time_slots': {},
+        }
+
+        for hour_range in range(1, 5):
+            hour_range_data = grouped_timetable.get(
+                week, {}).get(day_name, {}).get(hour_range, [])
+            day_data['time_slots'][hour_range] = hour_range_data
+
+        timetable_data.append(day_data)
+
+    return [timetable_data, all_week]
+
+

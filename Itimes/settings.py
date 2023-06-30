@@ -42,8 +42,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_URL = "/auth/login"
-# Application definition
+
+LOGIN_URL = '/auth/login'  
+ERROR_403_TEMPLATE = '/error/403.html'  
+ERROR_404_TEMPLATE =  '/error/403.html' 
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
