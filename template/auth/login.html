@@ -5,13 +5,85 @@
 {% block 'title' %} Se Connecter {% endblock %}
 
 {% block 'main' %}
+ <!-- Ecrivez le code ici -->
+ <div class="container-fluid h-100">
+    <div class="row h-100">
+        <div class="col-5 p-0 cloner">
+            <img src={% static '/img/logoifri.png' %} alt="" style="width: 150px ; height: 100px; margin-left: 10px; margin-top: 20px;">
+            <h3 class="">Bienvenue sur CampusTime !</h3>
+            <p class="">CampusTime est une plateforme moderne et intuitive de gestion des emplois du temps pour simplifier la planification et l'organisation de votre vie universitaire.</p>
+            <div class="elment">
+                <ul class="horizontal-menu" >
+                    <li class="part"><a href="">©2023 CampusTime</a></li>
+                    <li><a href="">Confidentialité</a></li>
+                    <li><a href="">Legale</a></li>
+                    <li><a href="">Contacte</a></li>
 
-    <!-- Ecrivez le code ici -->
-    <h1>Login Page</h1>
+                </ul>
+            </div>
+        </div>
+        <div class="col-7  div-1 ">
+            <div class="mt-4 sign">
+                <p>Vous n'aviez pas de compte ? <a href="{% url 'register' %}">S'inscrit !</a></p>
+            </div>
+            <form action="{% url 'login' %}" class="formulaire"method="POST">
+                {% csrf_token %}
+                <div class="mb-5">
+                    <h4 class="text-center">Connexion</h4>
+                    <p class="title-1 text-center">Entrer vos identifiants pour vous connectez</p>
+                </div>
+                {% if error %}
+                    <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                       {{ message }} 
+                    </div>
+                {% endif %}
+                <div class="mb-3">
+                    <input type="email" name="email" class="form-control" id="input1" aria-describedby="emailHelp"placeholder="Email">
+                </div>
+                <div class="mb-3 mt-4">
+                    <input type="password" name="password" class="form-control " id="input1" aria-describedby="emailHelp"placeholder="Mot de Passe">
+                </div>
+                <div class="content">
+                    <p class="pr"><a href="{% url 'forgot-password' %}">Mot de Passe oublier ?</a></p>
+                    <button type="submit"class="btn btn-primary text-center" name="env">Connecter</button>
+                </div>
+               
+            </form>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}
 {% block 'style' %}
 <style>
-    /* Ecrivez vos css ici directement  */
+/* Ecrivez votre css ici  */
+html, body{ height:100%;}
+.content{display:flex ; justify-content: space-between; margin-top: 5%;}
+.formulaire{width: 300px; margin-top: 20%; margin-left: 35%;}
+.formulaire input{ padding: 9.5px;}
+.pr{margin-top: 5px;}
+.pr a {text-decoration: none;}
+.btn{width: 100px !important; height: 40px !important;}
+.title-1{color: #a7afb7;}
+/* .formulaire h4{font-weight: 600;} */
+.sign{ margin-left: 60%;}
+.sign p{font-size: 15px; font-weight: 500;}
+.sign a {text-decoration: none}
+.div-1{background-color: #f0f0f0;}
+.cloner{background-image:url({% static '/img/bg-4.jpg' %} ); background-repeat: no-repeat; background-position: center; background-size: cover;}
+.cloner h3{font-size: 25px ;  color: white; margin-left: 20px; margin-top: 200px;}
+.cloner p{font-size: 16px ;  color: #beb1b1; margin-left: 20px; margin-top: 0px;}
+/* .elment li{ list-style: none;}
+.elment li a {display: inline-block; text-decoration: none; color: #fff} */
+.horizontal-menu {list-style: none;display: flex;}
+.horizontal-menu li {margin-right: 30px;}
+.horizontal-menu li a {text-decoration: none; color: #fff;}
+.horizontal-menu li:last-child { margin-right: 0;}
+.elment{margin-top: 40%;}
+.horizontal-menu .part{margin-right: 25%;}
+
+
 </style>
 {% endblock %}

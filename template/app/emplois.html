@@ -1,0 +1,264 @@
+
+<div class="container">
+    <div class="my-3 d-flex justify-content-end">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSubject">
+            <i class="mdi mdi-plus"></i>
+            Ajouter
+        </button>
+        <div class="modal fade" id="addSubject" tabindex="-1" aria-labelledby="addSubjectLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addSubjectLabel">Créer un emplois </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'emplois' %}" class="ajaxForm">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="POST">
+                            <div class="my-3 text-start">
+                                <label for="label_id" class="form-label">Matières</label>
+                                <select name="label_id" id="label_id" class="form-select form-control">
+                                    <option value="default" disabled>---Select one---</option>
+                                    {% for matiere in matieres %}
+                                    <option value="{{ matiere.id }}"> {{ matiere.label}} </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="my-3 text-start">
+                                <label for="proffesseur_id" class="form-label">Proffesseurs</label>
+                                <select name="prof_id" id="level_id" class="form-select form-control">
+                                    <option value="default" disabled>---Select one---</option>
+                                    {% for proffesseur in proffesseurs %}
+                                    <option value="{{ proffesseur.id }}"> {{ proffesseur.last_name }} {{ proffesseur.first_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="my-3 text-start">
+                                <label for="label_id" class="form-label">Salles</label>
+                                <select name="salle_label" id="label_id" class="form-select form-control">
+                                    <option value="default" disabled>---Select one---</option>
+                                    {% for classroom in classrooms %}
+                                    <option value="{{ classroom.id }}"> {{ classroom.label }} </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col">
+                                    <label for="start_time" class="form-label">Heure du Début</label>
+                                   <input type="datetime-local" name="start_time" class="form-control"  aria-label="">
+                                </div>
+                                <div class="col">
+                                    <label for="end_time" class="form-label">Heure de Fin</label>
+                                  <input type="datetime-local"  name="end_time" class="form-control"  aria-label="">
+                                </div>
+                              </div>
+                              <div class="row my-3">
+                                <div class="col">
+                                    <label for="level_id" class="form-label">Niveau</label>
+                                    <select name="level_id" id="level_id" class="form-select form-control">
+                                        <option value="default" disabled>---Select one---</option>
+                                        {% for level in levels %}
+                                    <option value="{{ level.id }}"> {{ level.label }} </option>
+                                    {% endfor %}
+                                    </select>
+                                </div>
+                               
+                              </div>
+                            <div class="text-center my-3">
+                                <button type="submit" class="btn btn-dark w-50 mx-auto submit">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        {% if state.error %}
+        <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ state.error }}
+        </div>
+        {% endif %}
+        {% if state.success %}
+        <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ state.success }}
+        </div>
+        {% endif %}
+    </div>
+    <table class="table table-striped table-hover text-center">
+        <thead style="background-color: #3F4254 ; color: white;">
+            <tr>
+                <th class="text-uppercase">Matière</th>
+                <th class="text-uppercase">Proffesseurs</th>
+                <th class="text-uppercase">Salles</th>
+                <th class="text-uppercase">Heure de Début</th>
+                <th class="text-uppercase">Heure de Fin</th>
+                <th class="text-uppercase">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emploi in emplois %}
+            <tr>
+                <td>{{ emploi.subject}}</td>
+                <td>{{ emploi.user.last_name }} {{ emploi.user.first_name }}</td>
+                <td> {{ emploi.classroom}} </td>
+                <td> 
+                    <div class="badge bg-primary">
+                        {{ emploi.start_time}}
+                    </div>   
+                </td>
+                <td> 
+                    <div class="badge bg-primary">
+                        {{ emploi.end_time}}
+                    </div>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary btn-icon edit-btn" style="margin-right: 10px !important;"
+                        data-bs-toggle="modal" data-bs-target="#editModal{{emploi.id}}"><i
+                            class="mdi mdi-pencil"></i></button>
+                    <button class="btn btn-sm btn-danger btn-icon delete-btn" data-bs-toggle="modal"
+                        data-bs-target="#destroyModal{{emploi.id}}"><i class="mdi mdi-delete-outline"></i></button>
+                    <div class="modal fade" id="destroyModal{{emploi.id}}" tabindex="-1"
+                        aria-labelledby="destroyModal{{emploi.id}}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="destroyModal{{emploi.id}}">Suppression
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'emplois' %}" method="post" class="modal-body ajaxForm">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="DELETE">
+                                        <input type="hidden" name="emploi_id" value="{{ emploi.id }}">
+                                        <h4>Voulez-vous vraiment supprimer cet emplois ? </h4>
+                                        <div class="text-center my-3">
+                                            <button type="submit" class="btn btn-danger w-25 mx-auto">
+                                                Oui, OK
+                                            </button>
+                                            <button type="button" class="btn btn-primary w-25 mx-auto"
+                                                data-bs-dismiss="modal" aria-label="Close">
+                                                Annuler
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="editModal{{emploi.id}}" tabindex="-1" aria-labelledby="editModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editModalLabel">Editer</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'emplois' %}" method="post" class="ajaxForm">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="PATCH">
+                                        <input type="hidden" name="emploi_id" value="{{ emploi.id }}">
+                                        <div class="my-3 text-start">
+                                            <label for="label_id" class="form-label">Matières</label>
+                                            <select name="label_id" id="label_id" class="form-select form-control">
+                                                <option value="default" disabled>---Select one---</option>
+                                                {% for matiere in matieres %}
+                                                <option value="{{ matiere.id }}" {% if matiere.id == emploi.subject.id %}selected{% endif %}>
+                                                    {{ matiere.label }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="my-3 text-start">
+                                            <label for="prof_id" class="form-label">Proffesseurs</label>
+                                            <select name="prof_id" id="prof_id" class="form-select form-control">
+                                                <option value="default" disabled>---Select one---</option>
+                                                {% for professeur in proffesseurs %}
+                                                <option value="{{ professeur.id }}" {% if professeur.id == emploi.user.id %}selected{% endif %}>
+                                                    {{ professeur.last_name }} {{ professeur.first_name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="my-3 text-start">
+                                            <label for="salle_label" class="form-label">Salles</label>
+                                            <select name="salle_label" id="salle_label" class="form-select form-control">
+                                                <option value="default" disabled>---Select one---</option>
+                                                {% for classroom in classrooms %}
+                                                <option value="{{ classroom.id }}" {% if classroom.id == emploi.classroom.id %}selected{% endif %}>
+                                                    {{ classroom.label }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="start_time" class="form-label">Heure du Début</label>
+                                                <input type="datetime-local" name="start_time" class="form-control" aria-label=""
+                                                    value="{{ emploi.start_time }}">
+                                            </div>
+                                            <div class="col">
+                                                <label for="end_time" class="form-label">Heure de Fin</label>
+                                                <input type="datetime-local" name="end_time" class="form-control" aria-label=""
+                                                    value="{{ emploi.end_time }}">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="level_id" class="form-label">Niveau</label>
+                                                <select name="level_id" id="level_id" class="form-select form-control">
+                                                    <option value="default" disabled>---Select one---</option>
+                                                    {% for level in levels %}
+                                                    <option value="{{ level.id }}" {% if level.id == emploi.level.id %}selected{% endif %}>
+                                                        {{ level.label }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="text-center my-3">
+                                            <button type="submit" class="btn btn-dark w-50 mx-auto submit">Mise à jour</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".ajaxForm").each(function (k, elt) {
+
+            $(this).on('submit', function (e) {
+                e.preventDefault();
+
+                $(elt).parents('.modal').find('.btn-close').click();
+
+                const formData = $(this).serialize();
+
+                $.ajax({
+                    method: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: formData,
+                    success: function (data) {
+                        $("#mainPage").html(data);
+                    },
+                    error: function (err) {
+                        $("#mainPage").html(err.responseText);
+                    },
+                })
+            })
+        })
+    })
+</script>

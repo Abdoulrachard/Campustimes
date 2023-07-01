@@ -1,0 +1,171 @@
+<div class="container">
+    <div class="my-3 d-flex justify-content-end">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSubject">
+            <i class="mdi mdi-plus"></i>
+            Ajouter
+        </button>
+        <div class="modal fade" id="addSubject" tabindex="-1" aria-labelledby="addSubjectLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addSubjectLabel">Ajouter un niveau</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'level' %}" class="ajaxForm">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="POST">
+                            <div class="my-3 text-start">
+                                <label for="label_id" class="form-label">Nom du niveau</label>
+                                <input type="text" name="label" id="label_id" class="form-control"
+                                    placeholder="Ex: Licence GL">
+                            </div>
+                            <div class="my-3 text-start">
+                                <label for="capacity_id" class="form-label">Total D'Etudiant</label>
+                                <input type="number" name="capacity" id="capacity_id" class="form-control"
+                                    placeholder="Ex: 200 pour 200 Étudiants">
+                            </div>
+                            <div class="text-center my-3">
+                                <button type="submit" class="btn btn-dark w-50 mx-auto submit">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        {% if state.error %}
+        <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ state.error }}
+        </div>
+        {% endif %}
+        {% if state.success %}
+        <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ state.success }}
+        </div>
+        {% endif %}
+    </div>
+    <table class="table table-striped table-hover text-center">
+        <thead style="background-color: #3F4254 ; color: white;">
+            <tr>
+                <th class="text-uppercase">Nom Niveau</th>
+                <th class="text-uppercase">Nombre d'Étudiants</th>
+                <th class="text-uppercase">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for level in levels %}
+            <tr>
+                <td> {{ level.label }} </td>
+                <td>
+                    <div class="badge bg-info">
+                        {{ level.capacity }}
+                    </div>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary btn-icon edit-btn" style="margin-right: 10px !important;"
+                        data-bs-toggle="modal" data-bs-target="#editModal{{level.id}}"><i
+                            class="mdi mdi-pencil"></i></button>
+                    <button class="btn btn-sm btn-danger btn-icon delete-btn" data-bs-toggle="modal"
+                        data-bs-target="#destroyModal{{level.id}}"><i class="mdi mdi-delete-outline"></i></button>
+                    <div class="modal fade" id="destroyModal{{level.id}}" tabindex="-1"
+                        aria-labelledby="destroyModal{{level.id}}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="destroyModal{{level.id}}">Suppression
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'level' %}" method="post" class="modal-body ajaxForm">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="DELETE">
+                                        <input type="hidden" name="level_id" value="{{ level.id }}">
+                                        <input type="hidden" name="label" value="{{ level.label }}">
+                                        <h4>Voulez-vous vraiment supprimer {{ level.label }} </h4>
+                                        <div class="text-center my-3">
+                                            <button type="submit" class="btn btn-danger w-25 mx-auto">
+                                                Oui, OK
+                                            </button>
+                                            <button type="button" class="btn btn-primary w-25 mx-auto"
+                                                data-bs-dismiss="modal" aria-label="Close">
+                                                Annuler
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="editModal{{level.id}}" tabindex="-1"
+                        aria-labelledby="editModalLabel{{level.id}}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editModalLabel{{level.id}}">Editer {{ level.label }}
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'level' %}" method="post" class="modal-body ajaxForm">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="PATCH">
+                                        <input type="hidden" name="level_id" value="{{ level.id }}">
+                                        <div class="mb-3 text-start">
+                                            <label for="label_id" class="form-label">Nom de niveau</label>
+                                            <input type="text" name="label" id="label_id" class="form-control"
+                                                placeholder="Ex: Licence GL" value="{{ level.label }}">
+                                        </div>
+                                        <div class="my-3 text-start">
+                                            <label for="capacity_id" class="form-label">Total d'Etudiant</label>
+                                            <input type="number" name="capacity" id="capacity_id" class="form-control"
+                                                placeholder="Ex: 200 pour 200 Étudiants" value="{{ level.capacity }}">
+                                        </div>
+                                        <div class="text-center my-3">
+                                            <button type="submit" class="btn btn-success w-50 mx-auto submit">Mise à
+                                                jour</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".ajaxForm").each(function (k, elt) {
+
+            $(this).on('submit', function (e) {
+                e.preventDefault();
+
+                $(elt).parents('.modal').find('.btn-close').click();
+
+                const formData = $(this).serialize();
+
+                $.ajax({
+                    method: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: formData,
+                    success: function (data) {
+                        $("#mainPage").html(data);
+                    },
+                    error: function (err) {
+                        console.error(err);
+                    },
+                })
+            })
+        })
+    })
+</script>

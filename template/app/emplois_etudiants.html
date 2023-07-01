@@ -1,0 +1,251 @@
+
+<div class="timetable">
+    <div class="week-names">
+      <div>monday</div>
+      <div>tuesday</div>
+      <div>wednesday</div>
+      <div>thursday</div>
+      <div>friday</div>
+      <div class="weekend">saturday</div>
+      
+    </div>
+    <div class="time-interval">
+      <div>7:00 - 10:00</div>
+      <div>10:00 - 13:00</div>
+      <div>13:00 - 16:00</div>
+      <div>16:00 - 19:00</div>
+     
+    </div>
+    <div class="content">
+      <div>
+        <div class="accent-orange-gradient"></div>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+          <div>
+        <div class="accent-green-gradient"></div>
+      </div>
+      <div class="weekend"></div>
+      <div class="weekend"></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div>
+        <div class="accent-cyan-gradient"></div>
+      </div>
+      <div></div>
+      <div class="weekend"></div>
+      <div class="weekend"></div>
+      <div>
+        <div class="accent-pink-gradient"></div>
+      </div>
+      <div></div>
+      <div>
+        <div class="accent-purple-gradient"></div>
+      </div>
+      <div></div>
+      <div></div>
+      <div class="weekend"></div>
+      <div class="weekend"></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div class="weekend"></div>
+      <div class="weekend"></div>
+      <div>
+        <div class="accent-purple-gradient"></div>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div class="weekend"></div>
+      <div class="weekend"></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div class="weekend"></div>
+      <div class="weekend"></div>
+    </div>
+  </div>
+  
+
+  {% block styles %}
+<style>
+  .timetable {
+    display: grid;
+    grid-template-areas: ". week"
+                         "time content";
+    grid-template-columns: 120px;
+    grid-template-rows: 60px;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .weekend {
+    background: lighten(#ECEFF1, 5%);
+    color: lighten(#bb4809, 20%);
+  }
+
+  .week-names {
+    grid-area: week;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+
+  .week-names > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 1px 0 0 #ECEFF1;
+  }
+
+  .time-interval {
+    grid-area: time;
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    font-size: 14px;
+  }
+
+  .time-interval > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 1px 0 0 #ECEFF1;
+  }
+
+  .content {
+    grid-area: content;
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .content > div {
+    box-shadow: inset 1px 0 0 #ECEFF1, inset 0 1px 0 0 #ECEFF1;
+  }
+</style>
+{% endblock %}
+<!-- <div class="timetable-img text-center py-3">
+  <h3 class="text-decoration-underline"> Emploi du temps de la {{ level.label }} </h3>
+</div>
+<div class="d-flex justify-content-between mb-4">
+  <div>
+    <select name="" id="switchWeek" class="form-select">
+      <option value="{{ current_week }}" selected disabled>Filtrer Par Semaine</option>
+      {% for w in all_week %}
+      <option value="{{ w }}"> Semaine du {{ w }} </option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="d-flex">
+    <a href="javascript:void(0)" class="btn btn-primary mx-2" id="printBtn">Télécharger</a>
+    {% if user.is_superuser or user.is_staff %}
+    <a href="javascript:void(0)" class="btn btn-success mx-2" data-bs-toggle="modal"
+      data-bs-target="#addSchedule">Créer</a>
+    {% endif %}
+  </div>
+</div>
+<div class="modal fade" id="addSchedule" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="level_id" value="{{ level.id }}">
+      <input type="hidden" name="weekNum" id="weekId">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> Emploi du temps de la {{ level.label }} </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="my-3 text-start">
+            <label for="teacher_id" class="form-label">Professeur:</label>
+            <select name="teacher_id" id="teacher_id" class="form-select form-control">
+              <option value="default" disabled>Selectionner le nom du professeur</option>
+              {% for t in teachers %}
+              <option value="{{ t.id }}"> {{ t.first_name }} {{ t.last_name }} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="my-3 text-start">
+            <label for="subject_id" class="form-label">Matière:</label>
+            <select name="subject_id" id="subject_id" class="form-select form-control">
+              <option value="default" disabled>Selectionner une matière</option>
+              {% for t in matieres %}
+              <option value="{{ t.id }}"> {{ t.label }} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="my-3 text-start">
+            <label for="classroom_id" class="form-label">Salle de cours:</label>
+            <select name="classroom_id" id="classroom_id" class="form-select form-control">
+              <option value="default" disabled>Selectionner une salle de cours</option>
+              {% for t in classrooms %}
+              <option value="{{ t.id }}"> {{ t.label }} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="my-3 text-start">
+            <label for="start_time_id" class="form-label">Date et heure de début</label>
+            .
+            <input type="datetime-local" name="start_time" id="start_time_id" class="form-control" required>
+          </div>
+          <div class="my-3 text-start">
+            <label for="end_time_id" class="form-label">Date et heure de fin</label>
+            <input type="datetime-local" name="end_time" id="end_time_id" class="form-control" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button type="submit" class="btn btn-primary">Créer</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Professeur</th>
+        <th>Matière</th>
+        <th>Salle de cours</th>
+        <th>Date et heure de début</th>
+        <th>Date et heure de fin</th>
+        {% if user.is_superuser or user.is_staff %}
+        <th>Actions</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for schedule in schedules %}
+      <tr>
+        <td>{{ schedule.teacher.first_name }} {{ schedule.teacher.last_name }}</td>
+        <td>{{ schedule.subject.label }}</td>
+        <td>{{ schedule.classroom.label }}</td>
+        <td>{{ schedule.start_time }}</td>
+        <td>{{ schedule.end_time }}</td>
+        {% if user.is_superuser or user.is_staff %}
+        <td>
+          <a href="javascript:void(0)" class="btn btn-primary btn-sm">Modifier</a>
+          <a href="javascript:void(0)" class="btn btn-danger btn-sm">Supprimer</a>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div> -->
+
+ 

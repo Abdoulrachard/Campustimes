@@ -2,18 +2,20 @@
 <html lang="fr">
 <head>
     {% include 'base/meta.html' %}
-    <title> {% block 'title' %} {% endblock %} - Itimes</title>
+    <title> {% block 'title' %} {% endblock %} - CampusTimes</title>
 </head>
 <body>
-    <main class="">
+    <main class="h-100">
+        
         {% block 'main' %}
         <!-- Ne rien ecrire dans ce fichier -->
         {% endblock %}
+
         {% block 'style' %}
         <style>
             /*   */
         </style>
-{% endblock %}
+        {% endblock %}
     </main>
 </body>
 </html>

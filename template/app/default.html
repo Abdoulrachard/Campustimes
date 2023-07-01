@@ -4,13 +4,197 @@
 
 {% block 'main' %}
 <!-- Ecrivez le code ici -->
-<div class="text-center">
-    <h1>Main Page</h1>
+<div class="d-flex" id="wrapper">
 
-    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
-    <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
-    <a href="{% url 'password.forgot' %}" class="btn btn-warning">Forgot Password</a>
-    <a href="{% url 'password.new' %}" class="btn btn-danger">New Password</a>
+    <!-- Sidebar -->
+    <div class="bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading text-center py-4 primary-custome fs-4 fw-bold text-uppercase border-bottom"><i
+                class="mdi mdi-school me-2"></i>CampusTimes</div>
+        <div class="list-group list-group-flush my-3" id="sidebar">
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text active c-link"><i
+                    class="mdi mdi-home me-2"></i>Tableau de Bord</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'emplois' %}"><i class="mdi mdi-calendar-clock me-2"></i>Emplois du temps</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'matiere' %}"><i class="mdi mdi-book-open-variant me-2"></i>Matières</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'level' %}"><i class="mdi mdi-account-group-outline me-2"></i>Niveaux</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'proffesseur' %}"><i class="mdi mdi-account-tie-outline me-2"></i>Professeurs</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
+                data-c-link="{% url 'salle' %}"><i class="mdi mdi-bank-outline me-2"></i>Salles</a>
+            <a href="javascript:void(0)"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"data-c-link="{% url 'aides' %}"
+                ><i
+                    class="mdi mdi-help-circle me-2"></i>Aides</a>
+            <a href="{% url 'log_out' %}"
+                class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                    class="mdi mdi-power me-2"></i>Déconnexion</a>
+
+        </div>
+        <div class="nano ">
+            <p class="text-center  " style="color: white; padding: 8px; background-color: rgb(47, 49, 47); margin: 8px; border-radius: 5px; margin-top: 80%;"
+            >&copy;2023 Campustimes v1.0</p>
+        </div>
+    </div>
+
+
+    <div id="page-content-wrapper">
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="mdi mdi-menu primary-text fs-4 me-3" id="menu-toggle"></i>
+                    
+                </div>
+
+                <div class="navbar-nav ms-auto">
+                    <div class="row">
+                        <div class="col">
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Rechercher..." aria-label="Rechercher" style="width: 900px !important;">
+                            <button class="btn btn-primary" type="button">Rechercher</button>
+                          </div>
+                        </div>
+                      </div>
+
+                    <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-bell-outline"></i></a>
+                    <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-brightness-6"></i></a>
+                    <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-theme-light-dark"></i></a>
+                </div>
+            </nav>
+        </div>
+
+
+        <div class="container-fluid px-4">
+            <div class="row g-3 my-2 mx-3">
+                <div class="col-md-3 ">
+                    <div class="p-3 c-1 shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div>
+                            <h3 class="fs-2">Cours</h3>
+                            <p class="fs-5">Programmes</p>
+                        </div>
+                        <i
+                            class="mdi mdi-book-open-page-variant fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="p-3 c-2 shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div>
+                            <h3 class="fs-2">Étudiants</h3>
+                            <p class="fs-5">Inscrits</p>
+                        </div>
+                        <i class="mdi mdi-account-group fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="p-3 c-3 shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div>
+                            <h3 class="fs-2">Enseignants</h3>
+                            <p class="fs-5">Actifs</p>
+                        </div>
+                        <i class="mdi mdi-account-tie fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="p-3 c-4 shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div>
+                            <h3 class="fs-2">% Réussite</h3>
+                            <p class="fs-5">Moyenne</p>
+                        </div>
+                        <i class="mdi mdi-trophy fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="loading" style="display: none;">
+            <div class="card-body text-center py-4 position-relative" style="min-height: 300px;">
+                <div class="position-absolute bottom-50 start-50">
+                    <div class="spinner spinner-border text-primary">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner spinner-border text-danger">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner spinner-border text-success">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner spinner-border text-warning">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5 mx-2" id="mainPage">
+            <h3 class="fs-4 mb-3">Emploi du temps</h3>
+            <div class="col">
+                <table class="table bg-white rounded shadow-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" width="100">Horaire</th>
+                            <th scope="col">Lundi</th>
+                            <th scope="col">Mardi</th>
+                            <th scope="col">Mercredi</th>
+                            <th scope="col">Jeudi</th>
+                            <th scope="col">Vendredi</th>
+                            <th scope="col">Samedi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">7:00 - 10:00</th>
+                            <td>Zohou Jerome - Algorithmique<br>Salle Iran 1</td>
+                            <td>Doumate - Langage C<br>Salle Iran 2</td>
+                            <td>John Aoga - Python<br>Salle Padtice</td>
+                            <td>Cica Olympio - Architecture des réseaux<br>Salle A1000</td>
+                            <td>Jean Koudi - Numération<br>Salle Etisalat</td>
+                            <td>Hounzame Vladimir - Logique des prédicats<br>Salle B500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">10:00 - 13:00</th>
+                            <td>Eugene Ezin - Analyse Mathématique<br>Salle Iran 1</td>
+                            <td>Probus Kiki - Logique assertionnelle<br>Salle Iran 2</td>
+                            <td>Olatumbosun - Probabilité<br>Salle Padtice</td>
+                            <td>Zohou Jerome - Statistique<br>Salle A1000</td>
+                            <td>Doumate - Développement web<br>Salle Etisalat</td>
+                            <td>John Aoga - Théorie des graphes<br>Salle B500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">13:00 - 16:00</th>
+                            <td>Cica Olympio - Algorithmique<br>Salle Iran 1</td>
+                            <td>Jean Koudi - Langage C<br>Salle Iran 2</td>
+                            <td>Hounzame Vladimir - Python<br>Salle Padtice</td>
+                            <td>Eugene Ezin - Architecture des réseaux<br>Salle A1000</td>
+                            <td>Probus Kiki - Numération<br>Salle Etisalat</td>
+                            <td>Olatumbosun - Logique des prédicats<br>Salle B500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">16:00 - 19:00</th>
+                            <td>Zohou Jerome - Analyse Mathématique<br>Salle Iran 1</td>
+                            <td>Doumate - Logique assertionnelle<br>Salle Iran 2</td>
+                            <td>John Aoga - Probabilité<br>Salle Padtice</td>
+                            <td>Cica Olympio - Statistique<br>Salle A1000</td>
+                            <td>Jean Koudi - Développement web<br>Salle Etisalat</td>
+                            <td>Hounzame Vladimir - Théorie des graphes<br>Salle B500</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
 </div>
 
 {% endblock %}

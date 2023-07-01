@@ -1,0 +1,168 @@
+<div class="container">
+    <div class="my-3 d-flex justify-content-end">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSubject">
+            <i class="mdi mdi-plus"></i>
+            Ajouter
+        </button>
+        <div class="modal fade" id="addSubject" tabindex="-1" aria-labelledby="addSubjectLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addSubjectLabel">Ajouter une salle de cours</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'salle' %}" class="ajaxForm">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="POST">
+                            <div class="my-3 text-start">
+                                <label for="label_id" class="form-label">Nom de la salle</label>
+                                <input type="text" name="label" id="label_id" class="form-control"
+                                    placeholder="Ex: Amphi IRAN 2">
+                            </div>
+                            <div class="my-3 text-start">
+                                <label for="desc_id" class="form-label">Description: </label>
+                                <textarea class="form-control" name="desc" id="desc_id" cols="30" rows="5"
+                                    placeholder="Une description facultative de la salle de cours"></textarea>
+                            </div>
+                            <div class="text-center my-3">
+                                <button type="submit" class="btn btn-dark w-50 mx-auto submit">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        {% if state.error %}
+        <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ state.error }}
+        </div>
+        {% endif %}
+        {% if state.success %}
+        <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ state.success }}
+        </div>
+        {% endif %}
+    </div>
+    <table class="table table-striped table-hover text-center">
+        <thead style="background-color: #3F4254 ; color: white;">
+            <tr>
+                <th class="text-uppercase">#</th>
+                <th class="text-uppercase">Nom de la salle</th>
+                <th class="text-uppercase">Description</th>
+                <th class="text-uppercase">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for salle in salles %}
+            <tr>
+                <td> {{ salle.id }} </td>
+                <td> {{ salle.label }} </td>
+                <td>
+                    {{ salle.desc }}
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary btn-icon edit-btn" style="margin-right: 10px !important;"
+                        data-bs-toggle="modal" data-bs-target="#editModal{{salle.id}}"><i
+                            class="mdi mdi-pencil"></i></button>
+                    <button class="btn btn-sm btn-danger btn-icon delete-btn" data-bs-toggle="modal"
+                        data-bs-target="#destroyModal{{salle.id}}"><i class="mdi mdi-delete-outline"></i></button>
+                    <div class="modal fade" id="destroyModal{{salle.id}}" tabindex="-1"
+                        aria-labelledby="destroyModal{{salle.id}}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="destroyModal{{salle.id}}">Suppression
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'salle' %}" method="post" class="modal-body ajaxForm">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="DELETE">
+                                        <input type="hidden" name="salle_id" value="{{ salle.id }}">
+                                        <h4>Voulez-vous vraiment supprimer {{ salle.label }} </h4>
+                                        <div class="text-center my-3">
+                                            <button type="submit" class="btn btn-danger w-25 mx-auto">
+                                                Oui, OK
+                                            </button>
+                                            <button type="button" class="btn btn-primary w-25 mx-auto"
+                                                data-bs-dismiss="modal" aria-label="Close">
+                                                Annuler
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="editModal{{salle.id}}" tabindex="-1" aria-labelledby="editModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editModalLabel">Editer {{ salle.label }} </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'salle' %}" method="post" class="ajaxForm">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="PATCH">
+                                        <input type="hidden" name="salle_id" value="{{ salle.id }}">
+                                        <div class="my-3 text-start">
+                                            <label for="label_id" class="form-label">Nom de la salle</label>
+                                            <input type="text" name="label" id="label_id" class="form-control"
+                                                placeholder="Ex: Amphi IRAN 2" value="{{ salle.label }}">
+                                        </div>
+                                        <div class="my-3 text-start">
+                                            <label for="desc_id" class="form-label">Description</label>
+                                            <textarea class="form-control" name="desc" id="desc_id" cols="30" rows="5"
+                                                placeholder="Une description facultative de la salle de cours">{{ salle.desc }}</textarea>
+                                        </div>
+                                        <div class="text-center my-3">
+                                            <button type="submit" class="btn btn-dark w-50 mx-auto submit">Mise à
+                                                jour</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".ajaxForm").each(function (k, elt) {
+
+            $(this).on('submit', function (e) {
+                e.preventDefault();
+
+                $(elt).parents('.modal').find('.btn-close').click();
+
+                const formData = $(this).serialize();
+
+                $.ajax({
+                    method: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: formData,
+                    success: function (data) {
+                        $("#mainPage").html(data);
+                    },
+                    error: function (err) {
+                        $("#mainPage").html(err.responseText);
+                    },
+                })
+            })
+        })
+    })
+</script>
