@@ -3,7 +3,6 @@ import pdb
 from django.http import JsonResponse
 from django.shortcuts import render , redirect
 from django.core.validators import validate_email
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login as auth_login , logout 
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
@@ -12,6 +11,7 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from Auth.mail import send_html_email
+from .models import MyUser as User, Level
 
 
 
@@ -25,7 +25,7 @@ def login(request):
         user = User.objects.filter(email=email).first()
         
         if user:
-            user_auth = authenticate(username=user.username, password=password)
+            user_auth = authenticate(email=user.email, password=password)
             
             if user_auth:
                 auth_login(request, user_auth)
@@ -59,6 +59,8 @@ def register(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         newpassword = request.POST.get('newpassword')
+        level_id = request.POST.get('level_id')
+        
         try:
            validate_email(email) == False
         except :
@@ -76,19 +78,20 @@ def register(request):
             message = f"Un utilisateur avec l'email {email} existe déja !" 
         if error == False:
             user = User(
-                 username = email , 
                 email = email ,
                 first_name = first_name,
-                last_name = last_name
+                last_name = last_name,
+                level=Level.objects.get(id=level_id)
             )
             user.save()
             user.password = password
             user.set_password(user.password)
-            user.save()  
+            user.save()
             return redirect('login') 
     context = {
         'error': error,
-        'message': message
+        'message': message,
+        'levels': Level.objects.all(),
     }
     
     return render(request, 'auth/register.html', context)

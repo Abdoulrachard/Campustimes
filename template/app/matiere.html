@@ -26,6 +26,10 @@
                                     placeholder="Ex: 16666R">
                             </div>
                             <div class="my-3 text-start">
+                                <label for="bgColor" class="form-label">Picker une couleur pour la matière</label>
+                                <input type="color" name="bgColor" id="bgColor" class="form-control">
+                            </div>
+                            <div class="my-3 text-start">
                                 <label for="total_times_id" class="form-label">Nombre total d'heure de la
                                     matiere</label>
                                 <input type="number" name="total_times" id="total_times_id" class="form-control"
@@ -76,7 +80,11 @@
         <tbody>
             {% for matiere in matiers %}
             <tr>
-                <td> {{ matiere.label }} </td>
+                <td>
+                    <div class="badge" style="background-color: {{ matiere.bgColor }};">
+                        {{ matiere.label }}
+                    </div>
+                </td>
                 <td>
                     <div class="badge bg-primary">
                         {{ matiere.total_times }}
@@ -142,6 +150,10 @@
                                             <label for="code_id" class="form-label">Code de la matière</label>
                                             <input type="text" name="code" id="code_id" class="form-control"
                                                 placeholder="Ex: 16666R" value="{{ matiere.code }}">
+                                        </div>
+                                        <div class="my-3 text-start">
+                                            <label for="bgColor" class="form-label">Picker une couleur pour la matière</label>
+                                            <input type="color" name="bgColor" id="bgColor" class="form-control" value="{{ matiere.bgColor }}">
                                         </div>
                                         <div class="my-3 text-start">
                                             <label for="total_times_id" class="form-label">Nombre total d'heure de la
