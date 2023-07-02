@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+  
+    <title>Rapport de Projet - Gestion des Emplois du Temps</title>
+</head>
+<style>
+    body {
+        background: #E6F4F1;
+        font-family: Arial, sans-serif;
+        padding: 10px 10%;
+    }
+
+    .header {
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 40px;
+        font-weight: 500;
+    }
+
+    h1,
+    h2,
+    h3 {
+        color: #333;
+    }
+
+    h2 {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 50px;
+        color: #8b8888;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+        justify-items: center;
+    }
+
+    li {
+        word-spacing: 3px;
+    }
+
+    .installation li {
+        margin-top: 20px
+    }
+
+    .text-green {
+        color: green
+    }
+
+    .manual p,
+    .manual h3:not(h3.title) {
+        padding-left: 5%
+    }
+    section { border-top: 3px solid silver; margin: 50px 0}
+    .hstack {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;}
+   .mx-2{
+    margin-right: 0.5rem;
+    margin-left: 0.5rem!;
+   }
+   .banner_ifri {
+    font-size: 15px;
+    color: #4B4747;
+    line-height: 22px;
+    font-weight: 550;
+   }
+   
+
+.text-center {
+    text-align: center;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.logo {
+    height: 80px;
+}
+
+img, svg {
+    vertical-align: middle;
+}
+img {max-width: 100%; height: auto;}
+.ms-auto {
+    margin-left: auto!important;
+}
+.vstack {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-self: stretch;
+}
+.banner_ministere {
+    width: 250px;
+}
+b, strong {
+    font-weight: bolder;
+}
+.banner_drapeau {
+    height: 8px;
+    width: 250px;
+    margin: 5px 0px;
+}
+h6{margin-top: 0px;}
+.banner_ministere_bottom {
+    color: black;
+    text-align: justify;
+    font-size: 13px;
+    line-height: 18px;
+}
+.ms-4 {
+    margin-left: 1.5rem!important;
+}
+.rounded {
+    border-radius: 0.25rem!important;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem!important;
+}
+.mt-2 {
+    margin-top: 0.5rem!important;
+}
+.hstack {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;
+}
+.banner {
+    display: none;
+}
+.banner {
+    padding: 20px;
+    box-shadow: 0px 22px 99px rgba(37, 130, 184, 0.15);
+}
+</style>
+
+<body>
+
+    <div class="contener rounded" style="background-color: #d8efef ; ;">
+        
+        <div class="hstack " style="padding: 50px;">
+            <img  src="logoifri.png" class="logo"  alt="" style="width: 120px ; height: 120px; margin-left: 10px; margin-top: -20px;">
+            <div class="mx-2">
+                <h6 class="banner_ifri">INSTITUT DE FORMATION ET DE RECHERCHE EN INFORMATIQUE</h6>
+                <p class="text-center"
+                    style="font-style: italic; font-size: 15px ; color: #726363; font-weight: 500 ;">Nous
+                    Bâtissons l'Excellence</p>
+            </div>
+            <div class="ms-auto">
+                <div class="vstack banner_ministere">
+                    <b>UNIVERSITE D'ABOMEY CALAVI</b>
+                    <div class="banner_drapeau">
+                        <div class="hstack" style="height: 8px;">
+                            <div class="col" style="height: 4px;background-color: #5A9F69; width: 80px;"></div>
+                            <div class="col" style="height: 4px;background-color: #DED843;width: 80px;"></div>
+                            <div class="col" style="height: 4px;background-color: #BC6469;width: 80px;"></div>
+                        </div>
+                    </div>
+                    <span class="banner_ministere_bottom">
+                        MINISTERE DE L'ENSEIGNEMENT SUPERIEUR ET DE LA RECHERCHES SCIENTIFIQUE
+                    </span>
+                </div>
+            </div>
+            <div class="ms-4">
+                <a href="">
+                    <img src="logouac.png" class="logo"
+                        style="width: 100px ; height: 100px; margin-left: 10px; margin-top: -20px;">
+
+                </a>
+            </div>
+        </div>
+    
+</div>
+    <div class="header">
+        <h1>Rapport de Projet - Gestion des Emplois du Temps</h1>
+        <h2>GROUPE N°27</h2>
+        <h3>Les Membre du Groupe  </h3>
+    </div>
+    <div class="container">
+        <section>
+            <ol class="section1">
+                <li>ABRAHAM sehou Odias</li>
+                <li>BACHABI Abdel A. Adébayo </li>
+                <li>EGBAKO Harold C. Tossé</li>
+                <li>GLELE Moran Victorien</li>
+                <li>HOUNKANRIN Vèrges A. Julien</li>
+                <li>KPATINDE Elisé Primael</li>
+            </ol>
+        </section>
+        <section class="section2">
+            <ol>
+                <li>LAWINGNI O. Abdoul Rachard</li>
+                <li>SIDI AMADOU Adnane</li>
+                <li>SOGLO Carmelia Axelle</li>
+                <li>TINMITONDE Pernel Djahou</li>
+                <li>TITTO Lucien Vigninnou</li>
+                <li>YENOU Jean-Daniel Sèdjro</li>
+            </ol>
+        </section>
+    </div>
+    <section>
+        <h2>La Dynamique Intérieure du Groupe </h2>
+        <p style="font-size: 24px;">
+            Afin d'accomplir notre projet de gestion des emplois du temps, notre équipe a opté pour une approche collaborative en répartissant les responsabilités entre les membres de la manière suivante :<br>
+        </p>
+        <h3>ABRAHAM sehou Odias & BACHABI Abdel A. Adébayo </h3>
+        <p>
+            Création du template de login , recuperation de mot de passe en cas d'oublie  et autre .
+        </p>
+        <h3>EGBAKO Harold C. Tossé && HOUNKANRIN Vèrges A. Julien </h3>
+        <p>
+            Ensemble , ils ont pu dégager le le template d'inscription et ont participer a l'elaboration du present rapport
+        </p>
+        <h3> KPATINDE Elisé Primael && SOGLO Carmelia </h3>
+        <p>
+           Ensemble , ils ont faite la realisation des differents marquettes du projet et ont egalement fais des apports significatif lors de l'intégration coté front
+        </p>
+        <h3> LAWINGNI O. Abdoul Rachard </h3>
+        <p>
+            En tant que chef d'équipe, il a brillamment pris en charge le développement à la fois côté frontend et backend, tout en assurant une gestion efficace du projet sur GitHub.Grâce à ses compétences techniques, sa capacité à diriger et son implication, il a grandement contribué au succès de l'équipe et à la réalisation d'un projet remarquable. </p>
+        <h3>SIDI AMADOU Adnane  </h3>
+        <p>
+            Il s'est chargé de faire la conception de la base de données .
+        </p>
+        <h3> TINMITONDE Pernel Djahou && YENOU Jean-Daniel Sèdjro </h3>
+        <p>
+            En tant que membre du groupe , ils ont fait la conception du template du mot de passe oblié et à aussi elaborer le diagramme de flux de données  et autre .
+        </p>
+        <h3>TITTO Lucien Vigninnou  </h3>
+        <p>
+            Il à participer à la realisation du projet , c'est un bon element quand meme ! 
+        </p>
+        <h3>GLELE Moran Victorien</h3>
+        <p>Il n'a rien fait dans le projet , on ne la jamais vu d'ailleurs .</p>
+    </section>
+    <section>
+        <h2>Description de la conception</h2>
+        <p>
+            Notre application web de gestion des emplois du temps a été conçue en utilisant une architecture
+            client-serveur et une approche
+            de développement basée sur le modèle MVT (Modèle-View-Templates). Voici les principaux composants de notre
+            conception :
+        </p>
+
+        <h3>Front-end</h3>
+        <p>
+            Le front-end de notre application a été développé en utilisant les langages HTML5, CSS3 et JavaScript , ajax(js). Nous
+            avons suivi les
+            meilleures pratiques de conception d'interfaces utilisateur pour assurer une expérience conviviale et
+            intuitive pour les
+            utilisateurs quelques soit le type de média qu'ils utilisent (Ordinateur, Tablette, Mobile).
+        </p>
+
+        <h3>Back-end</h3>
+        <p>
+            Le back-end de notre application a été développé en utilisant le langage de programmation Python, avec un
+            framework de développement web approprié : Django. La communication avec la base de données est gérée à
+            l'aide d'un ORM
+            (Object-Relational Mapping) pour assurer une abstraction efficace de la couche de persistance.
+        </p>
+        <h3>Base de données</h3>
+        <p>
+            Pour le stockage des données, nous avons utilisé une base de données relationnelle telle que SQLite en
+            developpement
+            et MySQL en production. Nous avons conçu un schéma de base de données adapté pour stocker les informations
+            relatives aux emplois
+            du temps, aux utilisateurs et à d'autres entités liées. Nous avons pris en compte les contraintes de
+            performance et de sécurité
+            lors de la conception de la structure de la base de données.
+        </p>
+        <p>
+            Grâce à cette conception, nous avons pu séparer clairement les responsabilités entre le front-end et le
+            back-end, facilitant ainsi
+            le développement, la maintenance et l'évolutivité de l'application. La base de données bien structurée nous
+            a permis de stocker et
+            de gérer efficacement les données relatives aux emplois du temps et aux utilisateurs.
+        </p>
+    </section>
+    <section>
+        <h2>Instructions de déploiement</h2>
+        <p>
+            Pour déployer et exécuter notre application de gestion des emplois du temps, suivez les étapes ci-dessous :
+        </p>
+        <h3>Installez Django</h3>
+        <ul class="installation">
+            <li>
+                Assurez-vous d'avoir le language Python installé sur votre machine. Vous pouvez télécharger python <a
+                    href="https://www.python.org/downloads/" target="_blank">ici</a>
+            </li>
+            <li>
+                Ouvrez votre terminal et exécutez la commande suivante pour installer Django à l'aide de l'outil de
+                gestion de packages pip :
+                <br><br> <span class="text-green">pip install Django</span> <br>
+            </li>
+            <li>
+                Si vous n'avez pas pip installé, utilisez plutôt la commande suivante pour installer Django :
+                <br><br> <span class="text-green">python -m pip install Django</span> <br>
+                <br>
+                Attendez que l'installation se termine. Une fois terminée, vous devriez avoir Django installé sur votre
+                machine.<br>
+            </li>
+            <li> Pour vérifier si Django est installé correctement, exécutez la commande suivante dans votre terminal :
+                <br><br> <span class="text-green">django-admin --version</span> <br><br>
+                Cela affichera la version de Django installée
+            </li>
+            <li>
+                Maintenant que vous avez Django installé, vous pouvez continuer à travailler sur le projet integrateur
+                IFRI 2022-2023.
+            </li>
+        </ul>
+        <h3>Lancez l'application sur votre machine</h3>
+        <p>
+            Pour récuperer et lancer l'application sur votre machine, assurez vous d'abord d'avoir python et django
+            installé sur votre
+            machine. Ensuite procéder aux étapes suivantes : <br>
+        <ul class="installation">
+            <li><span class="text-green">git clone https://github.com/Abdoulrachard/PIL1_2223_27</span></li>
+            <li><span class="text-green">cd PIL1_2223_27</span></li>
+            <li><span class="text-green">python manage.py migrate</span></li>
+            <li><span class="text-green">manage.py runserver 8000</span></li>
+        </ul>
+        <p>
+            L'application va démarrer sur l'addresse http://localhost:8000 : copier cet addresse et lancer-le dans le
+            navigateur.<br>
+            L'application est maintenant lancé !
+        </p>
+        </p>
+        <p>
+            Assurez-vous de suivre toutes les étapes et de configurer correctement votre environnement avant de déployer
+            l'application. Si
+            vous rencontrez des problèmes lors du déploiement, consultez notre manuel d'utilisation plus d'explication.
+        </p>
+    </section>
+    <section>
+        <h2>Structure du project</h2>
+        <p>
+            Notre application est structurée de la manière suivante :
+        </p>
+        <ul class="installation">
+            <li>
+                <span class="text-green">App : </span> <span>C'est l'application principale notre système.</span>
+            </li>
+
+            <li>
+                <span class="text-green">Auth : </span> <span>Cette fonctionnalité gère l'authentification des
+                    utilisateurs dans l'application. Elle permet aux utilisateurs de s'inscrire, de se connecter et de
+                    gérer leurs informations d'identification, telles que leur nom d'utilisateur et leur mot de passe.
+                    Elle garantit également la sécurité en vérifiant l'identité des utilisateurs avant de leur accorder
+                    l'accès à certaines parties de l'application.</span>
+            </li>
+
+            <li>
+                <span class="text-green">CampusTimes : </span> <span>Cette fonctionnalité permet de gérer les emplois du
+                    temps dans l'application. Elle permet de créer, afficher et modifier les emplois du temps pour
+                    différentes activités ou événements. Cela peut inclure la planification des cours, des réunions, des
+                    rendez-vous, etc. Les utilisateurs peuvent consulter les emplois du temps pour voir les horaires
+                    prévus et les éventuelles modifications.</span>
+            </li>
+
+           
+
+            <li>
+                <span class="text-green">Static/img : </span> <span>Ce dossier concerne la gestion des médias dans
+                    l'application. Elle permet de stocker différents types
+                    de médias tels que des images et autre .</span>
+            </li>
+
+            <li>
+                <span class="text-green">templates : </span> <span>Ce dossier permet de gérer les modèles
+                 dans l'application.
+                    la création de différents éléments tel que les fichiers d'extextion html dans l'application .</span>
+            </li>
+        </ul>
+
+    </section>
+    <section>
+        <h2>Base de données de l'application</h2>
+        <p>
+            Vous pouvez voir ici le modèle relationnel de données (MCD) de notre base de données :
+        </p>
+        <div>
+            <img src="mcd.png" alt="Database diagram" style="height: 600px; width: 100%;">
+        </div>
+        <div>
+            <p>Cliquer ici pour voir la base de donnée
+            <a href="PIL1-2223-27-database.sql"style="text-decoration : none ;" >Mysql Database</a>
+        </p>
+        </div>
+    </section>
+    <section>
+        <h2>Diagramme de flux  de l'application</h2>
+        <p>
+            Vous pouvez voir ici le diiagramme de flux indiquant le proccessus  de l'application:
+        </p>
+        <div>
+            <img src="bizzagi.jpg" alt="Diagramme de flux">
+        </div>
+    </section>
+    <section class="manual">
+        <h2>Manuel d'utilisation pour les utilisateurs</h2>
+        <p>
+            Ce manuel d'utilisation fournit des instructions détaillées sur les fonctionnalités spécifiques réservées
+            aux utilisateurs
+            de l'application de gestion des emplois du temps.
+        </p>
+        <h3 class="title">1. Connexion en tant qu'administrateur</h3>
+        <p>
+            Pour accéder aux fonctionnalités administratives telles que le tableau de bord administratif, la gestion des
+            professeurs,
+            la gestion des emplois du temps etc..., connectez-vous à l'application en utilisant vos identifiants
+            d'administrateur
+            spécifiques ou vos mots de passe administrateurs "mot de passe de connexion propre aux administrateurs qui es generer lors de la creation ".
+        </p>
+
+        <h3>Tableau de bord administratif</h3>
+        <p>
+            Une fois connecté en tant qu'administrateur, vous serez redirigé vers le tableau de bord administratif. Ce
+            dernier
+            fournit un aperçu des informations importantes pour les administrateurs, telles que le nombre de salles, le
+            nombre de cours,
+            le nombre d'étudiants, etc.
+        </p>
+
+        <h3>Gestion des professeurs && Gestion des collaborateurs</h3>
+        <p>
+            Dans le menu Professeurs, vous pourrez ajouter de nouveaux professeurs ou un nouveau collaborateur en fournissant les détails requis,
+            tels que le nom,
+            l'adresse e-mail, les compétences, etc. Vous aurez également la possibilité de supprimer des collaborateurs et des  professeurs
+            existants de la base
+            de données.
+        </p>
+
+       
+
+        <h3>Gestion des emplois du temps</h3>
+        <p>
+            Dans la section Emploi du temps, vous pourrez gérer les emplois du temps existants. Vous aurez la
+            possibilité d'ajouter de
+            nouveaux emplois du temps en spécifiant les détails tels que le la matiere, la date, l'heure, le proffesseur ,
+            etc. Vous pourrez
+            également modifier ou supprimer les emplois du temps existants selon vos besoins.
+        </p>
+
+        <h3>Gestion des matiere</h3>
+        <p>Dans la section Cours, vous pourrez gérer les différents matiere proposés. Vous pourrez ajouter de nouveaux
+            matiere en fournissant les détails requis, tels que le titre, la description, la durée  etc. De
+            plus, vous pourrez modifier ou supprimer les cours existants selon vos besoins.
+        </p>
+
+        <h3>Gestion des niveaux</h3>
+        <p>La gestion des niveaux vous permettra de définir les différents niveaux d'études ou de compétences
+            disponibles dans votre système. Vous pourrez créer de nouveaux niveaux en spécifiant un nom, une description
+            et éventuellement des critères spécifiques pour chaque niveau. Vous aurez également la possibilité de
+            modifier ou supprimer les niveaux existants.
+        </p>
+
+        <h3>Gestion des salles de cours</h3>
+        <p>La gestion des salles de cours vous permettra de gérer les différentes salles disponibles pour les cours.
+            Vous pourrez ajouter de nouvelles salles en spécifiant des informations telles que le nom, la capacité,
+            l'équipement disponible, etc. De plus, vous aurez la possibilité de modifier ou supprimer les salles de
+            cours existantes selon vos besoins. </p>
+
+        
+        <p>
+            Vous êtes maintenant prêt à utiliser l'application de gestion des emplois du temps en tant
+            qu'administrateur.
+        </p>
+    </section>
+    <section class="manual">
+        <h3 class="title">2. Connexion en tant qu'étudiant</h3>
+        <p>
+            Pour accéder à l'application en tant qu'utilisateur, utilisez vos identifiants personnels telles que votre
+            noms, votre adresse
+            mail, pour créer un compte et vous connecter à l'application.
+        </p>
+        <h3>Tableau de bord utilisateur</h3>
+        <p>
+            Après vous être connecté, vous serez redirigé vers le tableau de bord où vous aurez à voir le nombre de
+            cours de la semaine courante, le nombre d'heures, le jour le plus chargé, le jour le moins chargé, ...
+        </p>
+        <h3>Consulter l'emploi du temps</h3>
+        <p>
+            Sur la page de l'emploi du temps, vous pourrez consulter votre emploi du temps personnel. Il affiche les
+            cours, les horaires,
+            les salles et les autres informations pertinentes pour chaque événement.
+        </p>
+        
+        <p>
+            Vous êtes maintenant prêt à utiliser l'application de gestion des emplois du temps en tant qu'utilisateur.
+        </p>
+    </section>
+    <footer>
+        <p>© 2023 - GROUPE 27 | Tous droits réservés</p>
+    </footer>
+</body>
+
+</html>
