@@ -1,4 +1,3 @@
-
 {% extends 'base/base.html' %}
 {% load static %}
 
@@ -60,8 +59,21 @@
                       
 
                     <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-bell-outline"></i></a>
-                    <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-brightness-6"></i></a>
-                    <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-theme-light-dark"></i></a>
+                    <ul>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link" href="#" data-toggle="dropdown">
+                            <img src="{% static '/img/user.jpg' %}" style="width:40px; border-radius:50%;" />
+                            <span class="xp-user-live"></span>
+                          </a>
+                          <ul class="dropdown-menu small-menu" id="dropdownMenu">
+                            <li class="badge bg-danger mx-2"><a href="javascript:void(0)">Etudiant</a></li>
+                            <li><a href="javascript:void(0)"><span class="mdi mdi-account-outline"></span>Profile</a></li>
+                            <li><a href="javascript:void(0)"><span class="mdi mdi--cog-outline"></span>Settings</a></li>
+                            <li><a href="{% url 'log_out' %}"><span class="mdi mdi-logout"></span>Logout</a></li>  
+                          </ul>
+                        </li>
+                      </ul>
+                      
                 </div>
             </nav>
         </div>
@@ -213,6 +225,7 @@
     </div>
 </div>
 
+
 {% endblock %}
  {% block 'styles' %}
     <style>
@@ -302,3 +315,5 @@ b, strong {
 }
 </style>
 {% endblock %}
+
+

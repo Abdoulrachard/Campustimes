@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -7,6 +8,7 @@ import uuid
 from django.db.models import Q
 from datetime import datetime, timedelta
 from App.models import Timestable
+
 
 import locale
 locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8')
@@ -202,9 +204,13 @@ def level(request):
                 error = "Erreur lors de la création/édition d'un niveau"
         else:
             error = "Veuillez remplir tout les champs marqués obligatoires"
-
+    levels = Level.objects.all()
+    capacity_values = [level.capacity / 20 for level in levels]
+    capacity_values_json = json.dumps(capacity_values)
+    
     context = {
         "levels": Level.objects.all(),
+       "capacity_values_json":capacity_values_json,
         'state': {
             'success': success,
             'error': error,
@@ -213,6 +219,17 @@ def level(request):
 
     return render(request, 'app/level.html', context)
 
+def get_capacity_data(request):
+    levels = Level.objects.all()
+    capacity_values = [level.capacity / 20 for level in levels]
+    level_categories = [level.label for level in levels]
+
+    data = {
+        'capacity_values': capacity_values,
+        'level_categories': level_categories,
+    }
+
+    return JsonResponse(data)
 
 @login_required()
 def proffesseur(request):

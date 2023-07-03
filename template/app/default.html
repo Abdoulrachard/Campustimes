@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
 {% block 'title' %} Acceuil {% endblock %}
 
 {% block 'main' %}
@@ -64,8 +64,26 @@
                       </div>
 
                     <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-bell-outline"></i></a>
-                    <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-brightness-6"></i></a>
-                    <a class="nav-link" href="javascript:void(0)"><i class="mdi mdi-theme-light-dark"></i></a>
+                    <ul>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link" href="#" data-toggle="dropdown">
+                            <img src="{% static '/img/user.jpg' %}" style="width:40px; border-radius:50%; margin-top: -10px;" />
+                            <span class="xp-user-live"></span>
+                          </a>
+                          <ul class="dropdown-menu small-menu" id="dropdownMenu">
+                            {% if user.is_superuser  %}
+                            <li class="badge bg-primary mx-2"><a href="javascript:void(0)">Collaborateur</a></li>
+                            {% endif %}
+                            {% if user.is_staff  %}
+                            <li class="badge bg-secondary mx-2"><a href="javascript:void(0)">Proffesseur</a></li>
+                            {% endif %}
+                            <li><a href="javascript:void(0)"><span class="mdi mdi-account-outline"></span>Profil</a></li>
+                            <li><a href="javascript:void(0)"><span class="mdi mdi-cog-outline"></span>Settings</a></li>
+                            <li><a href="{% url 'log_out' %}"><span class="mdi mdi-logout"></span>Logout</a></li>  
+                          </ul>
+                        </li>
+                      </ul>
+                        
                 </div>
             </nav>
         </div>
@@ -135,66 +153,45 @@
             </div>
         </div>
         <div class="row my-5 mx-2" id="mainPage">
-            <h3 class="fs-4 mb-3">Emploi du temps</h3>
-            <div class="col">
-                <table class="table bg-white rounded shadow-sm table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col" width="100">Horaire</th>
-                            <th scope="col">Lundi</th>
-                            <th scope="col">Mardi</th>
-                            <th scope="col">Mercredi</th>
-                            <th scope="col">Jeudi</th>
-                            <th scope="col">Vendredi</th>
-                            <th scope="col">Samedi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">7:00 - 10:00</th>
-                            <td>Zohou Jerome - Algorithmique<br>Salle Iran 1</td>
-                            <td>Doumate - Langage C<br>Salle Iran 2</td>
-                            <td>John Aoga - Python<br>Salle Padtice</td>
-                            <td>Cica Olympio - Architecture des réseaux<br>Salle A1000</td>
-                            <td>Jean Koudi - Numération<br>Salle Etisalat</td>
-                            <td>Hounzame Vladimir - Logique des prédicats<br>Salle B500</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">10:00 - 13:00</th>
-                            <td>Eugene Ezin - Analyse Mathématique<br>Salle Iran 1</td>
-                            <td>Probus Kiki - Logique assertionnelle<br>Salle Iran 2</td>
-                            <td>Olatumbosun - Probabilité<br>Salle Padtice</td>
-                            <td>Zohou Jerome - Statistique<br>Salle A1000</td>
-                            <td>Doumate - Développement web<br>Salle Etisalat</td>
-                            <td>John Aoga - Théorie des graphes<br>Salle B500</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">13:00 - 16:00</th>
-                            <td>Cica Olympio - Algorithmique<br>Salle Iran 1</td>
-                            <td>Jean Koudi - Langage C<br>Salle Iran 2</td>
-                            <td>Hounzame Vladimir - Python<br>Salle Padtice</td>
-                            <td>Eugene Ezin - Architecture des réseaux<br>Salle A1000</td>
-                            <td>Probus Kiki - Numération<br>Salle Etisalat</td>
-                            <td>Olatumbosun - Logique des prédicats<br>Salle B500</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">16:00 - 19:00</th>
-                            <td>Zohou Jerome - Analyse Mathématique<br>Salle Iran 1</td>
-                            <td>Doumate - Logique assertionnelle<br>Salle Iran 2</td>
-                            <td>John Aoga - Probabilité<br>Salle Padtice</td>
-                            <td>Cica Olympio - Statistique<br>Salle A1000</td>
-                            <td>Jean Koudi - Développement web<br>Salle Etisalat</td>
-                            <td>Hounzame Vladimir - Théorie des graphes<br>Salle B500</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-
-
+            <div class="grid-container">
+                <div class="charts">
+                  <div class="charts-card">
+                    <h2 class="chart-title" style="color: white;">Statistiques des etudiants </h2>
+                    <div id="bar-chart"></div>
+                  </div>
+                </div>
+              </div>
     </div>
 </div>
 </div>
 
+
+{ % block 'styles' %}
+<style>
+    .charts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 60px;
+    }
+
+    .charts-card {
+      background-color: #263043;
+      margin-bottom: 20px;
+      padding: 25px;
+      box-sizing: border-box;
+      -webkit-column-break-inside: avoid;
+      border-radius: 5px;
+      box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+    }
+
+    .chart-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+
 {% endblock %}
+
+  

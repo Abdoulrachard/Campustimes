@@ -104,4 +104,10 @@
   color: white !important;
 }
 
+.dropdown-menu {
+  margin-left: -30px !important;
+}
+.dropdown-menu a{
+text-decoration: none; color: black;}
+.dropdown-menu li{margin-top: 10px;}
 
