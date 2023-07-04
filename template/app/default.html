@@ -7,12 +7,12 @@
 <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
-    <div class="bg-white" id="sidebar-wrapper">
+    <div class="bg-white " id="sidebar-wrapper">
         <div class="sidebar-heading text-center py-4 primary-custome fs-4 fw-bold text-uppercase border-bottom"><i
                 class="mdi mdi-school me-2"></i>CampusTimes</div>
-        <div class="list-group list-group-flush my-3" id="sidebar">
+        <div class="list-group list-group-flush my-3 " id="sidebar">
             <a href="javascript:void(0)"
-                class="list-group-item list-group-item-action bg-transparent second-text active c-link"><i
+                class="list-group-item list-group-item-action bg-transparent second-text active c-link"data-c-link="{% url 'notification' %}"><i
                     class="mdi mdi-home me-2"></i>Tableau de Bord</a>
             <a href="javascript:void(0)"
                 class="list-group-item list-group-item-action bg-transparent second-text fw-bold c-link"
@@ -71,15 +71,16 @@
                             <span class="xp-user-live"></span>
                           </a>
                           <ul class="dropdown-menu small-menu" id="dropdownMenu">
+                            <p class="mx-2"style="font-size:12px !important; font-weight:bold;">{{ user.first_name }} {{ user.last_name }}</p>
                             {% if user.is_superuser  %}
                             <li class="badge bg-primary mx-2"><a href="javascript:void(0)">Collaborateur</a></li>
                             {% endif %}
                             {% if user.is_staff  %}
-                            <li class="badge bg-secondary mx-2"><a href="javascript:void(0)">Proffesseur</a></li>
+                            <li class="badge bg-warning mx-2"><a href="javascript:void(0)">Proffesseur</a></li>
                             {% endif %}
                             <li><a href="javascript:void(0)"><span class="mdi mdi-account-outline"></span>Profil</a></li>
-                            <li><a href="javascript:void(0)"><span class="mdi mdi-cog-outline"></span>Settings</a></li>
-                            <li><a href="{% url 'log_out' %}"><span class="mdi mdi-logout"></span>Logout</a></li>  
+                            <li><a href="javascript:void(0)"><span class="mdi mdi-cog-outline"></span>Préferences</a></li>
+                            <li><a href="{% url 'log_out' %}"><span class="mdi mdi-logout"></span>Déconnecter</a></li>  
                           </ul>
                         </li>
                       </ul>
@@ -190,6 +191,16 @@
       align-items: center;
       justify-content: center;
     }
+    .xp-user-live {
+    position: absolute;
+    bottom: 5px;
+    right: 9px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #353b48;
+    background-color: #fa2a05;
+}
   </style>
 
 {% endblock %}
