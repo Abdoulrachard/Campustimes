@@ -1,5 +1,5 @@
-# PIL1_2223_27
-Ce projet consiste à créer une application Web qui va permettre aux coordonnateurs de l'institut de contrôler la gestion des enseignants, de la masse horaire, la planification des emplois du temps et la consultation des emplois par les étudiants de l'institut.
+# CampusTimes
+Ce projet consiste à créer une application Web qui va permettre aux coordonnateurs de l'institut de contrôler la gestion des enseignants, de la masse horaire, la planification des emplois du temps et la consultation des emplois par les étudiants d'une université .
 
 ## Fonctionnalités
 
@@ -25,13 +25,13 @@ cd chemin/vers/le/répertoire
 4. Clonez le référentiel en utilisant la commande `git clone` :
 
 ```bash
-git clone https://github.com/Abdoulrachard/PIL1_2223_27.git
+git clone https://github.com/Abdoulrachard/Campustimes.git
 
 ```
 
 5. Accédez au répertoire du projet nouvellement cloné :
 ```bash
-cd PIL1_2223_27
+cd Campustimes
 ```
 
 6. Installer Django:
@@ -117,13 +117,11 @@ Si vous avez des questions ou des doutes, n'hésitez pas à demander en cliquant
 
 ## Authors
 
-- [@Groupe27](https://github.com/Abdoulrachard/PIL1_2223_27)
+- [@AbdoulRachard](https://github.com/Abdoulrachard/campustimes)
 
 
 ## License
 
 <!--  -->
 
-## Restriction d'accès
-
-Ce projet est destiné à être édité et consulté uniquement par les membres du groupe de travail avec lesquels il est élaboré en cas de constat qu'un membre a divulger quoi que ce soit concernant le travail de son groupe sera denoncer et il sera éjecter du groupe avec comme note 00/20.
+.
